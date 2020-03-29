@@ -1,0 +1,88 @@
+{
+    "scenarios": [{
+            "scenarioName": "Buyer Publish Event",
+            "scenarioCode": "S1",
+            "collections": [{
+                "collectionName": "publish",
+                "collectionCode": "S1-publish",
+                "apisPass": 10,
+                "apisFail": 3,
+                "apis": [{
+                    "name": "api 1",
+                    "status": 200,
+                    "pass": 3,
+                    "fail": 0
+                }, {
+                    "name": "api 2",
+                    "status": 404,
+                    "pass": 1,
+                    "fail": 2
+                }, {
+                    "name": "api 3",
+                    "status": 302,
+                    "pass": 3,
+                    "fail": 0
+                }],
+                "urls": {
+                    "xml": "http://gepmtstorage.blob.core.windows.net/sourcingreports/scenarios/S1-publish.xml",
+                    "html": "http://gepmtstorage.blob.core.windows.net/sourcingreports/scenarios/S1-publish.html"
+                }
+            }]
+        },
+        {
+            "scenarioName": "Supplier Response Submit",
+            "scenarioCode": "S2",
+            "collections": [{
+                "collectionName": "publish",
+                "collectionCode": "S2-publish",
+                "apisPass": 10,
+                "apisFail": 3,
+                "apis": [{
+                    "name": "api 1",
+                    "status": 200,
+                    "pass": 3,
+                    "fail": 0
+                }, {
+                    "name": "api 2",
+                    "status": 404,
+                    "pass": 1,
+                    "fail": 2
+                }, {
+                    "name": "api 3",
+                    "status": 302,
+                    "pass": 3,
+                    "fail": 0
+                }],
+                "urls": {
+                    "xml": "http://gepmtstorage.blob.core.windows.net/sourcingreports/scenarios/S1-publish.xml",
+                    "html": "http://gepmtstorage.blob.core.windows.net/sourcingreports/scenarios/S1-publish.html"
+                }
+            }, {
+                "collectionName": "responseSubmit",
+                "collectionCode": "S2-responseSubmit",
+                "apisPass": 10,
+                "apisFail": 3,
+                "apis": [{
+                    "name": "api 1",
+                    "status": 200,
+                    "pass": 3,
+                    "fail": 0
+                }, {
+                    "name": "api 2",
+                    "status": 404,
+                    "pass": 1,
+                    "fail": 2
+                }, {
+                    "name": "api 3",
+                    "status": 302,
+                    "pass": 3,
+                    "fail": 0
+                }],
+                "urls": {
+                    "xml": "http://gepmtstorage.blob.core.windows.net/sourcingreports/scenarios/S2-publish.xml",
+                    "html": "http://gepmtstorage.blob.core.windows.net/sourcingreports/scenarios/S2-publish.html"
+                }
+            }]
+        }
+    ]
+}

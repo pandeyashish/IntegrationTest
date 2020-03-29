@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="buyer-flip-to-contract" time="2.649">
+  <testsuite name="Register Session / Register Session" id="91d24e86-3247-44a0-8984-2b76cc8f48c1" tests="3" failures="0" errors="0" time="0.299">
+    <testcase name="Status code is 200" time="0.299"/>
+    <testcase name="Content-Type is present" time="0.299"/>
+    <testcase name="Session generated" time="0.299"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Id" id="94c8ef0d-5988-45a0-8034-945caca27eeb" tests="3" failures="0" errors="0" time="0.941">
+    <testcase name="Status code is 200" time="0.941"/>
+    <testcase name="Content-Type is present" time="0.941"/>
+    <testcase name="Event id present" time="0.941"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Event" id="f13b5d74-e1f2-4694-b2ab-b57934678cd8" tests="2" failures="0" errors="0" time="0.351">
+    <testcase name="Status code is 200" time="0.351"/>
+    <testcase name="Content-Type is present" time="0.351"/>
+  </testsuite>
+  <testsuite name="Adjust Timeline / Edit Evaluation Timeline" id="72f6e24b-a230-4b25-b0d1-a93a004e230a" tests="2" failures="1" errors="0" time="1.058">
+    <testcase name="Status code is 200" time="1.058"/>
+    <testcase name="Response timeline adjustment" time="1.058" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 0c18f262-0d13-4443-89d6-167bc4b6f8e9.]]>
+        <![CDATA[Collection name: buyer-flip-to-contract.]]>
+        <![CDATA[Request name: Adjust Timeline / Edit Evaluation Timeline.]]>
+        <![CDATA[Test description: Response timeline adjustment.]]>
+        <![CDATA[Error message: expected false to equal true.]]>
+        <![CDATA[Stacktrace: AssertionError: expected false to equal true
+   at Object.eval sandbox-script.js:2:4).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

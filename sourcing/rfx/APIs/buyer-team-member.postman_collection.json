@@ -1,0 +1,107 @@
+{
+	"info": {
+		"name": "buyer-team-member",
+		"_postman_id": "27262698-e2dc-458f-a691-5fc9b12b15a2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Members",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1b4d6e59-0019-4aa5-ab7c-9775efc215fc",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test('Team Member added to the Event', function(){",
+							"    pm.expect(result).to.equal(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Contacts\":[\n\t\t{\n\t\t\t\"ContactCode\":44351504000001,\n\t\t\t\"FirstName\":\"ATG Admin\",\n\t\t\t\"LastName\":\"Admin Test\"\n\t\t}\n\t]\n\t\n}"
+				},
+				"url": {
+					"raw": "{{url}}/SourcingService/TeamMember/AddTeamMembersFromRepository?oloc=219",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SourcingService",
+						"TeamMember",
+						"AddTeamMembersFromRepository"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "219",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/TeamMember/AddTeamMembersFromRepository?c=NDQzNTE10&oloc=219' -H 'Pragma: no-cache' -H 'RequestVerificationToken: lWwbSgFwUnaaDJZ4YmS6GTtsQASi3UUh87zGBSCqIzW0mseA7mlBgEF2r3NZ0hHfmgXphFMOfwZrEC3eN-yNdDIFajo1:rMKjUZ67ksSe6XpZgLaTG7tzzhjHITyFXLlHfTw0fwGnZmsVEDnFZYUU-62qfv3cFEL2D3froEJy63S1D8SaECQZgkwevBytGDJYoYvHkTocBCuUjwudv0vqzFSImSummFWZIw2' -H 'x-correlation-id: 00b89c86-7a00-4085-a99c-b11fbf78377d' -H 'Origin: https://smartqc.gep.com' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=219&dd=ZGM9MjYwMzcmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjYwMzcmYnBjPTQ0MzUxNQ2' --data-binary '{\\\"Contacts\\\":[{\\\"ContactCode\\\":44351504000001,\\\"FirstName\\\":\\\"ATG Admin\\\",\\\"LastName\\\":\\\"Admin Test\\\"}]}' --compressed"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ff7c8ff0-286c-424e-88b2-aa68d45eca5f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "45d78881-7a61-4252-a24c-fdda48487e9b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

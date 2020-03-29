@@ -1,0 +1,12 @@
+[{
+    "teamMembers": [{
+        "ContactCode": 44351504000195,
+        "FirstName": "Snehal 1",
+        "LastName": "ATG1"
+    }],
+    "suppliers": [{
+        "PartnerCode": "505728"
+    }, {
+        "PartnerCode": "513029"
+    }]
+}]

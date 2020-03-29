@@ -1,0 +1,224 @@
+{
+	"info": {
+		"name": "buyer-basic-details",
+		"_postman_id": "3e5087ee-521c-4510-b954-8fff5ef15d31",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50b50322-c765-4192-802e-655314572162",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.environment.set('basicDetails', JSON.stringify(result));",
+							"pm.test('Fetched the basic details', function(){",
+							"    pm.expect(result.DocumentCode.toString()).to.equal(pm.environment.get('documentCode'));",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/SourcingService/BasicDetails/Get?oloc=219",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SourcingService",
+						"BasicDetails",
+						"Get"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "219",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/BasicDetails/Get?oloc=219&c=NDQzNTE10' -H 'Pragma: no-cache' -H 'RequestVerificationToken: nrHM6TysF3VmuWKxtiJ-1C-BLOg8TNH4U1sJalWcRb_vbzVt-VcDwuP90YhtQuYQ1Yb5zuA6znf4aDzgtXbNSKE0e-U1:HEyzVOd6-vDeVNpuWfizOuDWS-jSjrE5odWAxP8kE4-YlN4NJPL4SX_w--P4qPrTQSQBlprOdpozdpifI1R3BrmfPu2jHtKDWSVE2VdMuNQbzGu0xiY1G3F_sVGkl-_yP09NBg2' -H 'x-correlation-id: 8803a79a-3757-4af9-97b2-d569fdc9dc63' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Cookie: _ga=GA1.2.2074224313.1501588198; mf_user=ff5cba581f64c9d4aaed2732fa227b67|; smartqc-sts-bpc=sF5tpGS3SRlRNeSvMyxX/A==; ASP.NET_SessionId=lnbijzaqnsmhxwqx2qq4gdmh; _LastLogin=3/22/2018 7:20:48 AM; smartdev-sts-bpc=F+S4GKWN8QcmQFPQD111KA==; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il9iYmU3OGM2MC1lZTY1LTQxMzMtODBmNi1iN2YzZTNjMzU0ZTQtQjM4RjE5Q0Q4MjgwMDJCNDk0NzU5Mjk4NzBBODg4RkEiIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6NTU2MTA5OTUtN2ViNS00NTRmLTg5MWQtMTAyMDg4YjU4Zjc2PC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFIUEtuUHo5R1lDaWJsQnJHV0JFRk5JcE41bHl3NVlrVkhoR09mL2NvL2hpeEowamNvR1pUcHNTeU0ybC9kNFpXOUVjeHdPTVNWanVsVC9ROUpRSis0RnkyOTExb0Z5SUt0bXJSaE95NzF6OHNDYTV1NDFlcjlIa3plMHhTQ283aG51Qm5QQWRKVGFiakJQK3B5UEI5WG9oWjhoY0dFUGlOZHhtUlk4UytkNCtEVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUFQWjFSV1BGY2pOa21sbG42MlNDMTIzd0V4TEdJcUxtaUVYdUtKdm4xeVFDL0NlVzVhK3ZZZXByeFJCZnBZeTlqM3JYOFFMN1Jvb1p6YTdoS0QwV25wcFN6azVwQVJvTW5HcDVsUXM4V05WWmo2aEkwUEpPb05YWGdtWXpQM0RROXlnbFlRTEVPb0Nkck4yVkNCc1FJNVJVME9IcWRXZndnTDYxZGkrREE0cXF3QkFBQXM4ekdEbUZkZUpoRmJmcE1ZdjRvd1JQZ2FhNGZ5TzAyVGxlVStJVi9kUi9nU1FuWkR1WCtLck9veDQrS1M1RDBTZjRrRm1pQzI2TTA1SFBYRWkwZFRiMTRQL0JhRGRNQ3YyVlBrajFINHBjQXJ4MTE0MFdpRmFHWGhxNnlzNktPaE9iOFlVSUhuakV0NjhFaWVhYStIMHlUS2N5M2dpbEtaN2hXVUxHOUUwYnRReUd5S3dJZDZJcFI4Q3ZOZExpWEFGaDRaR0VrL013VnBHV2tPamNCSThoTEFNdkxucGFHeFVwdmNuVE1PaUVBWmNMSUNONld4NTB0NVdvSll2aElqUlJSWWcxM3RidzJtSC9ZR01pWW1NTTZjUUVweE43b24xd1p0RWZKT3lUZzcyZ3E3UUh2SXg1RisrS1ZWSU5CQ2Y1Z2F2VTFMeDdOcG9EcElTbU55bW5vUFVwZW5QbVAwekoyOE5wSjBhbDcrbDRGT05lN1hsaTYyVS81NEthNHJkN3JMOGN6ZDRmZzllWFBFT3M0alhOY0FsYlEwRGNjaEkrUmtpWitsOFgydFFhVklFa3hENHc1eFZvdis0U1BjSmQrY0JzUmU4MFY0RmI4VEVUZFF6N29LampjcVdpaXYwSU1pZGtRbjUwOEticEIycjFvVHA1QVhsYlY1eUNENFhESHBQcFhoV3dOaGlCSGxpblVVZHd0ZStYa2NYRmhmV1Q4MGhReU43NDEyUmc3a3lBcnNYbWloWGdKL0RoRFVEUXh0WU8wamtaUElTZkMzNWUvOWxRR1RqOHZERUJYbmRWWm9JVGkyMVlIdWZTVnhtRGRIeTFVVC9hcHNmRFQwR2gvU1pIaHdhbnJ6Y21CWHI2; FedAuth1=QTVnMFpZN1d6aW9qS2V5TTUzalJENDdySyt2T1E3d3gzK3pGdUNuUXNGVEtjTW1kd21hdWxJNnVCSnlORUhYMlJuMVRZU3lyNlI0c0R3L2xtenNCUHhBdzJhRkI1VkU1WU1zQjg0UVRWUmdZdEQ3ZHdQRTkzMXBqSmYrSk1LYStmS25sRzYwNnNVaXNlQ1dnZ3VrQ0VBN2NFRlRBWHQyMEZOVUVTZDBIUFl4SVFCRmZXL0NTQVNRd01KbXB6WEczVUU0eEZtQWllbjcrR01JR09KYUxjMGhhVk5JY2hSbVF3WG10SVdTbHVRK3JCSUdCUG4wTDd5NHRER2N1ejNTeEsvcWJwVFF2OUtEV3VUYkJVWDNrSXd4U0tURmNadjZ2OVh5N2VMS3ZsODYvTU9XR2h0eTJLRURFb2xDMnBzSkFSSWpGL2x1WGE4cHc0enBBZUhFY1RtSVFqbTRyRGQ1am1mYUlpQmhXWlFLTjFJNlBHVGhkdXlyZFpkcmRVem5BQmt2c1VqRDk1VHNrbXZlc0pwUVRrNEtGaSt1OGVPbUVNN0ZMbklSaGpBWjU2VmNwc2xGeXJaSTNHNE9aOUlrVUdiSXh0Qk1SaXB5WTBHY2lrY1ozeDllbDl5WXBmcUlvdkJ1VXU1S2xlRG10YUFpQWE3aUtHQkpYdjNxWGF5SlVGTFBieUkyU2xCRndiSFB6RnhLd0tZYjYvcXBHemFvclFlSy9XaTk5RklCK3dyODFoTG9McHVvZ25hQkZrbHNKWGdqZnNGeWJjRzhxMXVEaGJwQkRDTGE1cm83WERXVmlwOHVDYldMbkdqdGxTR1RlQ2R1RUhGcGFwaCtQbnNjdDhVYnIrTVN0R0hnSkw1bFZPODY0eHJVb0FhNlJzR1MwTE5EMytWSDNiaUt0a2RObjE3Q2I3bnJ6TVdPZU1ZNlBtYlA1bkhpVFh1eGduVVJpYlN6Z3JBTGtFdHpDOW41QkM3cmE4ZVlqZnFIbHlsR3ZldHJKMmM5M1NkVUVCam5OVENSQWtOL3VGeWlUb2dsVG1SaGVqd0VMNmJiYXpnRTNVUUJZT09TM2pTVFpubFJ0RUIxL1kwT0M2V01EamJPQUc4UUI5ZFlJa0VkMGZ4Y0FxL1hMbTNUelFscVpaMW00aGh2SHpEQmlWUUN3RFcyY2xvcjNMa1ZtWUFzLytxdklzc2xsSllhVVI0NkJjZDZLeVVobFBIUXcrWTEvQTF6NzUxS0FMa2YvQitYNzI8L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==; mf_ebebfd35-9c00-437d-acb5-7d11f63a7a19=82433b3fb9c5079708dcba8052a60087|03240299e6bf4a2ca31c9943724f23e4db9005d4|1521897842849||0|||1|14.32' -H 'Connection: keep-alive' -H 'Referer: https://smartqc.gep.com//Sourcing/indexdev?oloc=219&dd=ZGM9MjY3MTImYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY3MTImYnBjPTQ0MzUxNQ2' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Save Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3afc4148-02d5-40da-ad77-c3451fd5ff45",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test('Basic details Saved', function(){",
+							"    pm.expect(result[0].toString()).to.equal(pm.environment.get('documentCode'));",
+							"    pm.expect(result[1]).to.equal(pm.environment.get('dd'));",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "33b0990b-6c54-4a19-ab4f-c5d27e569e85",
+						"type": "text/javascript",
+						"exec": [
+							"const basicDetails = JSON.parse(pm.environment.get('basicDetails'));",
+							"",
+							"basicDetails.EventName = 'Dummy Name';",
+							"basicDetails.EventDescription = 'New Description 1';",
+							"basicDetails.EventType = 'Request for Proposal';",
+							"basicDetails.EventCurrency = 'USD';",
+							"basicDetails.EventValue = null;",
+							"",
+							"basicDetails.UpdatedOn = new Date();",
+							"basicDetails.ModifiedDate = new Date();",
+							"",
+							"// Construct ORG ",
+							"basicDetails.EventORG = [];",
+							"for(var i in basicDetails.Doc.DocumentBUList)",
+							"    basicDetails.EventORG.push(basicDetails.Doc.DocumentBUList[i].BusinessUnitCode);",
+							"",
+							"// Construct PASS ",
+							"basicDetails.EventPAS = [];",
+							"for(var i in basicDetails.Doc.DocumentPASList)",
+							"    basicDetails.EventPAS.push(basicDetails.Doc.DocumentPASList[i].PasCode);",
+							"    ",
+							"// Construct PASS ",
+							"basicDetails.EventREG = [];",
+							"for(var i in basicDetails.Doc.DocumentRegionList)",
+							"    basicDetails.EventREG.push(basicDetails.Doc.DocumentRegionList[i].RegionCode);",
+							"",
+							"// Get Company name ",
+							"pm.environment.set('basicDetails', JSON.stringify(basicDetails));",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{basicDetails}}"
+				},
+				"url": {
+					"raw": "{{url}}/SourcingService/BasicDetails/Post?oloc=219",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SourcingService",
+						"BasicDetails",
+						"Post"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "219",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/BasicDetails/Post?oloc=219&c=NDQzNTE10' -H 'Pragma: no-cache' -H 'RequestVerificationToken: 5ndndGJ0c7HImKQs-LfYDfQKjzQvsK2z7ZNSQQeAnk9FpuCg_UvF00iNEXgd9aEH01YMo4qA70shMMC1M6CiQ_Z89ik1:7RlE5OVeUBplhpkbpgkQK1z--Ds3lb0jd9NCF3YrpZ7qUr73CrZjPRhqB_1RFFX-XpQBnjQ1XTMul-25Obx8tESrf1nPyxcxaWSvQOjAgrpRNJjdwgXby0iJ0E57cDw-_jPU8w2' -H 'x-correlation-id: 82c084bc-0e9d-4c5c-a55b-de3e97399ab2' -H 'Origin: https://smartqc.gep.com' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Referer: https://smartqc.gep.com//Sourcing/indexdev?oloc=219&dd=ZGM9MjY3MTImYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY3MTImYnBjPTQ0MzUxNQ2' --data-binary '{\\\"SourceDocumentCode\\\":0,\\\"Doc\\\":{\\\"DefaultCurrencyCode\\\":null,\\\"ModifiedBy\\\":0,\\\"CreatedBy\\\":44351504000094,\\\"UpdatedOn\\\":\\\"2018-03-23T16:18:45.097\\\",\\\"CreatedOn\\\":\\\"2018-03-23T16:18:45.097\\\",\\\"CultureCode\\\":\\\"en-US\\\",\\\"SortOrder\\\":null,\\\"SortBy\\\":null,\\\"TotalRecords\\\":0,\\\"PageSize\\\":0,\\\"PageIndex\\\":0,\\\"ClientID\\\":0,\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"DocumentRelationID\\\":null,\\\"ExistingDocumentNumber\\\":null,\\\"IsDocumentNumberUpdatable\\\":false,\\\"ACEEntityDetailCode\\\":0,\\\"IsLinkInfoDetails\\\":false,\\\"IsFilterByBU\\\":true,\\\"SelectedRegionCode\\\":null,\\\"SelectedPasCode\\\":null,\\\"SourceSystemInfo\\\":null,\\\"ACEntityId\\\":0,\\\"DocumentLOBDetails\\\":[{\\\"EntityId\\\":1,\\\"EntityDisplayName\\\":\\\"ATG Organization\\\",\\\"EntityCode\\\":\\\"100\\\",\\\"EntityDetailCode\\\":1}],\\\"EntityDetailCode\\\":[1],\\\"EntityId\\\":1,\\\"InterfaceDocumentStatus\\\":0,\\\"DocumentSourceTypeInfo\\\":0,\\\"GenerateDocumentName\\\":true,\\\"LinkedDocumentTypeCode\\\":0,\\\"LinkedDocumentCode\\\":0,\\\"GPNPasInCSV\\\":null,\\\"AllowDuplicateDocumentName\\\":true,\\\"SearchKey\\\":\\\"\\\",\\\"IsAddtionalDetails\\\":true,\\\"IsStakeholderDetails\\\":false,\\\"IsDocumentDetails\\\":true,\\\"IsSingleNode\\\":false,\\\"IsConfidential\\\":false,\\\"IsTemplate\\\":false,\\\"SupplierDocumentLinkInfoList\\\":null,\\\"DocumentLinkInfoList\\\":[],\\\"DocumentAdditionalFieldList\\\":[],\\\"DocumentStakeHolderList\\\":[],\\\"DocumentBUList\\\":[{\\\"Level\\\":null,\\\"ParentEntityDetailCode\\\":null,\\\"EntityHierarchy\\\":null,\\\"IsSingleNode\\\":false,\\\"BusinessUnitEntityCode\\\":\\\"1295\\\",\\\"BusinessUnitName\\\":\\\"1295-Apex Tool International, LLC\\\",\\\"BusinessUnitCode\\\":79}],\\\"DocumentRegionList\\\":[{\\\"IsSingleNode\\\":false,\\\"IsSelected\\\":false,\\\"RegionName\\\":\\\"AFRICA\\\",\\\"RegionCode\\\":369}],\\\"DocumentPASList\\\":[{\\\"IsSingleNode\\\":false,\\\"IsSelected\\\":false,\\\"ClientPASCode\\\":\\\"\\\",\\\"PasName\\\":\\\"Fin Goods/Components\\\",\\\"PasCode\\\":44351550000001}],\\\"NumberofAttachments\\\":0,\\\"NumberofPartners\\\":0,\\\"NumberofSections\\\":0,\\\"NumberofSurveys\\\":0,\\\"NumberofItems\\\":0,\\\"DocumentStatusInfo\\\":1,\\\"DocumentTypeInfo\\\":1,\\\"DocumentDescription\\\":null,\\\"DocumentNumber\\\":\\\"017310-Mar2018\\\",\\\"DocumentName\\\":\\\"017310-Mar2018\\\",\\\"DocumentCode\\\":26712},\\\"DocumentStatus\\\":\\\"Draft\\\",\\\"SealedEvent\\\":false,\\\"MultiCurrencyEvent\\\":false,\\\"ConfidentialEvent\\\":false,\\\"TrainingEvent\\\":false,\\\"EventORG\\\":[79],\\\"EventREG\\\":[369],\\\"EventPAS\\\":[44351550000001],\\\"ModifiedDate\\\":\\\"2018-03-23T16:18:45.127\\\",\\\"CreatedDate\\\":\\\"2018-03-23T16:18:45.097\\\",\\\"EventTypeOptions\\\":[{\\\"name\\\":\\\"Request for Proposal\\\",\\\"code\\\":\\\"rfp\\\"},{\\\"name\\\":\\\"Request for Information\\\",\\\"code\\\":\\\"rfi\\\"},{\\\"name\\\":\\\"Request for Quotation\\\",\\\"code\\\":\\\"rfq\\\"}],\\\"EventTypeDetails\\\":{\\\"name\\\":\\\"Request for Proposal\\\",\\\"code\\\":\\\"rfp\\\"},\\\"EventType\\\":\\\"Request for Proposal\\\",\\\"EventCurrencyOptions\\\":[{\\\"name\\\":\\\"USD\\\",\\\"code\\\":\\\"USD\\\"},{\\\"name\\\":\\\"CHF\\\",\\\"code\\\":\\\"CHF\\\"},{\\\"name\\\":\\\"CLP\\\",\\\"code\\\":\\\"CLP\\\"},{\\\"name\\\":\\\"CNY\\\",\\\"code\\\":\\\"CNY\\\"},{\\\"name\\\":\\\"COP\\\",\\\"code\\\":\\\"COP\\\"},{\\\"name\\\":\\\"MYR\\\",\\\"code\\\":\\\"MYR\\\"},{\\\"name\\\":\\\"RON\\\",\\\"code\\\":\\\"RON\\\"},{\\\"name\\\":\\\"TND\\\",\\\"code\\\":\\\"TND\\\"},{\\\"name\\\":\\\"TWD\\\",\\\"code\\\":\\\"TWD\\\"}],\\\"EventCurrencyDetails\\\":{\\\"name\\\":\\\"USD\\\",\\\"code\\\":\\\"USD\\\"},\\\"EventCurrency\\\":\\\"USD\\\",\\\"EventValue\\\":null,\\\"EventDescription\\\":\\\"\\\",\\\"EventName\\\":\\\"017310-Mar2018\\\",\\\"DocumentCode\\\":26712}' --compressed"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "107bc047-9b8e-4e25-8d8a-d863bab22865",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "383a4679-d557-4939-9364-669fd9f6588d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

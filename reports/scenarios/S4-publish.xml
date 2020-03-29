@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="buyer-event-publish" time="22.965999999999998">
+  <testsuite name="Create Event / Get New RFX" id="5b8a29b9-48f5-4e61-b2a0-f43c60f2f720" tests="2" failures="0" errors="0" time="2.174">
+    <testcase name="Status code is 200" time="2.174"/>
+    <testcase name="Generated DD" time="2.174"/>
+  </testsuite>
+  <testsuite name="Create Event / Register Session" id="5c3e748c-3724-41d6-9d3d-01f3fc4fad81" tests="2" failures="0" errors="0" time="0.376">
+    <testcase name="Status code is 200" time="0.376"/>
+    <testcase name="Session generated" time="0.376"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Id" id="cc5bdd2e-7165-452d-8c9e-d9b3a7e2eed9" tests="2" failures="0" errors="0" time="0.29">
+    <testcase name="Status code is 200" time="0.29"/>
+    <testcase name="Fetched event id" time="0.29"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Event" id="dcafd47b-298c-48e8-82d9-6fb79c730fc7" tests="1" failures="0" errors="0" time="0.317">
+    <testcase name="Status code is 200" time="0.317"/>
+  </testsuite>
+  <testsuite name="Basic Details / Get Details" id="b5155595-23d5-4f9f-9002-8d38fafa99bd" tests="2" failures="0" errors="0" time="0.484">
+    <testcase name="Status code is 200" time="0.484"/>
+    <testcase name="Fetched the basic details" time="0.484"/>
+  </testsuite>
+  <testsuite name="Basic Details / Save Details" id="45b4313d-2a9b-438d-a858-a452143fe0ed" tests="2" failures="0" errors="0" time="3.845">
+    <testcase name="Status code is 200" time="3.845"/>
+    <testcase name="Basic details Saved" time="3.845"/>
+  </testsuite>
+  <testsuite name="Event Settings / Edit Settings" id="dcbdfce2-49a2-442e-ba26-7384f32e6f80" tests="1" failures="0" errors="0" time="1.022">
+    <testcase name="Status code is 200" time="1.022"/>
+  </testsuite>
+  <testsuite name="Adjust Timelines / Edit Response Timeline" id="796a7b5b-11ca-4111-9002-7776d4cb5a01" tests="2" failures="0" errors="0" time="1.128">
+    <testcase name="Status code is 200" time="1.128"/>
+    <testcase name="Response timeline adjustment" time="1.128"/>
+  </testsuite>
+  <testsuite name="Adjust Timelines / Edit Evaluation Timeline" id="c80f6f14-784e-4fec-9b5d-9ad74ae7291d" tests="2" failures="0" errors="0" time="1.067">
+    <testcase name="Status code is 200" time="1.067"/>
+    <testcase name="Response timeline adjustment" time="1.067"/>
+  </testsuite>
+  <testsuite name="Team Members / Add Members" id="393b2cc8-68b3-4e9a-ac8a-f2a90c2f8c04" tests="2" failures="0" errors="0" time="1.36">
+    <testcase name="Status code is 200" time="1.36"/>
+    <testcase name="Team Member added to the Event" time="1.36"/>
+  </testsuite>
+  <testsuite name="Suppliers / Add Suppliers" id="7a34ff27-3db5-4280-9576-c7213b2cfc2e" tests="2" failures="0" errors="0" time="2.906">
+    <testcase name="Status code is 200" time="2.906"/>
+    <testcase name="Supplier added to the Event" time="2.906"/>
+  </testsuite>
+  <testsuite name="Pricesheet / Create Pricesheet" id="42091e0c-87ed-4f3c-b267-0b85f47a0519" tests="2" failures="0" errors="0" time="0.377">
+    <testcase name="Status code is 200" time="0.377"/>
+    <testcase name="Fetched pricesheet id" time="0.377"/>
+  </testsuite>
+  <testsuite name="Pricesheet / Get Pricesheet" id="0c248214-3b33-45eb-9dbb-5064ecfff09f" tests="1" failures="0" errors="0" time="0.299">
+    <testcase name="Status code is 200" time="0.299"/>
+  </testsuite>
+  <testsuite name="Pricesheet / Add Data Row" id="ac7569e3-f4ac-4d5a-9e48-2a46f2af1a6b" tests="1" failures="0" errors="0" time="0.742">
+    <testcase name="Status code is 200" time="0.742"/>
+  </testsuite>
+  <testsuite name="Pricesheet / Save Pricesheet" id="fb3b3220-0ea2-4401-b979-fe6323bfdc13" tests="2" failures="0" errors="0" time="1.17">
+    <testcase name="Status code is 200" time="1.17"/>
+    <testcase name="Saved Pricesheet" time="1.17"/>
+  </testsuite>
+  <testsuite name="Questionnaire / Create Questionnaire" id="e07eb94e-6dae-493e-a5ca-633a04304f7a" tests="2" failures="0" errors="0" time="0.491">
+    <testcase name="Status code is 200" time="0.491"/>
+    <testcase name="Fetched questionnaire id" time="0.491"/>
+  </testsuite>
+  <testsuite name="Questionnaire / Create Question" id="584e4e32-9264-4280-acc0-3e7d86577c61" tests="2" failures="0" errors="0" time="0.521">
+    <testcase name="Status code is 200" time="0.521"/>
+    <testcase name="Fetched question id" time="0.521"/>
+  </testsuite>
+  <testsuite name="Questionnaire / Save Question" id="37923d3a-5932-4c7e-ab1c-c8ca606a6019" tests="1" failures="0" errors="0" time="0.426">
+    <testcase name="Status code is 200" time="0.426"/>
+  </testsuite>
+  <testsuite name="Questionnaire / Save Questionnaire " id="404bd45f-1edc-49e9-a182-3078cdd47b70" tests="2" failures="0" errors="0" time="0.865">
+    <testcase name="Status code is 200" time="0.865"/>
+    <testcase name="Saved Questionnaire" time="0.865"/>
+  </testsuite>
+  <testsuite name="Publish Event / Validate" id="23e36a7f-8b46-4fdc-adc6-753a7b2706e5" tests="1" failures="0" errors="0" time="0.743">
+    <testcase name="Status code is 200" time="0.743"/>
+  </testsuite>
+  <testsuite name="Publish Event / Publish" id="24c7e81b-648d-4e77-a664-b8c03f3e3abf" tests="2" failures="0" errors="0" time="2.363">
+    <testcase name="Status code is 200" time="2.363"/>
+    <testcase name="Published Event" time="2.363"/>
+  </testsuite>
+</testsuites>

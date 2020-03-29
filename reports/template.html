@@ -1,0 +1,64 @@
+ {{#each scenarios}}
+<li class="padding-30-0">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{scenarioName}}</h5>
+
+            <div class="accordion" id="{{scenarioCode}}">
+                {{#each collections}}
+                <div class="card">
+                    <div class="card-header cursor-pointer collapsed" id="headingOne" data-toggle="collapse" data-target="#{{collectionCode}}" aria-expanded="true" aria-controls="{{collectionCode}}">
+
+                        <h5>
+                            <a href="{{urls.html}}" target="_blank">{{collectionName}}</a>
+                            <ul class="list-inline float-right">
+                                <li class="list-inline-item">
+                                    <span class="badge badge-info">{{executionTime}}ms</span>
+                                </li>
+                                <li class="list-inline-item">
+                                    <span class="badge badge-success">{{apisPass}}</span>
+                                </li>
+                                <li class="list-inline-item">
+                                    <span class="badge badge-danger">{{apisFail}}</span>
+                                </li>
+                            </ul>
+
+                        </h5>
+
+                    </div>
+
+                    <div id="{{collectionCode}}" class="collapse" aria-labelledby="headingOne" data-parent="#{{../scenarioCode}}">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col" class="col-2">API</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Pass</th>
+                                        <th scope="col">Fail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each apis}}
+                                    <tr>
+                                        <th scope="row">{{inc @index}}</th>
+                                        <td>{{name}}</td>
+                                        <td>{{status}}</td>
+                                        <td><span class="badge badge-success">{{pass}}</span></td>
+                                        <td><span class="badge badge-danger">{{fail}}</span></td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                {{/each}}
+            </div>
+
+        </div>
+    </div>
+</li>
+{{/each}}

@@ -1,0 +1,186 @@
+{
+	"info": {
+		"name": "buyer-publish",
+		"_postman_id": "1ba7b91b-3ba2-42cb-8a3c-7800ac5587a9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Validate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89d0a339-4d28-471f-a15f-1923ac2b5323",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"documentCode\": {{documentCode}}\n}"
+				},
+				"url": {
+					"raw": "{{urlNode}}/psevent/action/doValidatePublishStatusDocCode?oloc=220",
+					"host": [
+						"{{urlNode}}"
+					],
+					"path": [
+						"psevent",
+						"action",
+						"doValidatePublishStatusDocCode"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "220",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/data/psevent/action/doValidatePublishStatusDocCode?oloc=220&c=NDQzNTE10' -H 'Cookie: _ga=GA1.2.2074224313.1501588198; mf_user=ff5cba581f64c9d4aaed2732fa227b67|; smartqc-sts-bpc=sF5tpGS3SRlRNeSvMyxX/A==; ASP.NET_SessionId=lnbijzaqnsmhxwqx2qq4gdmh; _LastLogin=3/22/2018 7:20:48 AM; smartdev-sts-bpc=F+S4GKWN8QcmQFPQD111KA==; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il9iYmU3YjBkMC0xZjc3LTQ2OWItYTg3Mi03OGU5YjA4ZDVmNDItN0IxQzhBNzE2Q0JEM0RCRjU0MTUyQzM3MDM5MzZCQzIiIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6MzIzZTQ5YWUtYmEwMy00YTNmLWE4YTMtZjlmYzk5NWQxZGY3PC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFMb1lkSHA0bDM1bHNKTXpGeFU5bkY3OEFiU09VUC9XQXlsV2RzZkMyY3Y4MUwrSitva0VpTGZMOE55WU1KZDk5WDEyN1BsRWFiRVZrNHVDSUFpY1F5aVJ6R3Rtcis1OVIyWkMvT1RnWDEvMWlVMGxLSGIrMmorTm9yNVdKYW9kT1g1TnNPOXpKVkQ5OW02ODdSTGFHWk9RK2pmVktzRjF0dDZKNzJhdDBzeVhEVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUF0OEorVkZIeU5FOWNhSElYRDE5eWlYTkN1RForcDVEZVhyT2crTEJUZmU1ZWlWYnBwYlJKM1hCWmYveEVSeHN6a3RNZlpxYTlhZzZYYWJZQU54a2tFT3p1RTliRlE0V1R4VWZDN2EzZE9OY0NnL0g1UitsenVRVVhTeTgvTXFpOTBGNnF2ZlVuenVZZjZDMEVTQlJuVmlZbGx3c1VWd0gwUEF6b1BHd0VQSVN3QkFBQW9vTUMrTm5UbXN4VzRxbzhTdlVqT2NKSzVGREZxRklIcnp4YWhJTW9WcGlucFZ3UCtZQU9EK0V3R1VxZU5XbkRHbDROYUhwazBiZDJtQUpsZ0JleU1rdUZvOUZITFlVbGdhNUxCMkpBSlRNcDdSZ2UzeWpZN0pkdHdkRjlGWGNPeG5rbzZwdmlXNVZtSm9XYXBicVlkbHlNUjVKdklLZjBKUDk1aEYvZU5ZTUNmMmlKWURhM2s2MERGaHZtK0IreTlFYjB5alNFeUNXTFZYQW82RVF0T1RkZm42Uml0cjdPOHlIcDY0VSs2OUJuRlRObWo5bGlrV3diZFBMR25pL2I3czl5OXdXbnBudk1BcVNZNmVWT0F2b1FuTTBRR3RaK0N1MXUvekgzN1BLVVZMV3RiRlhSd3dlaVdqVitrOWcrYVora1RyWUNXNHhYcE1oRFZvVG1hVGM0czFOMzJJYkd2aFdBNUtoZmdOZzdaSUg1QkgzUURUd2JQWGJoUlhzRE9PMVpvUW1JSVNSOFhPMHVnaGxmZTBFdjZBNEVIenlBUE02UW5FYTNTbGJHc0RRdXlxZnpVbFNUdjdaSEdwNllCOVBlZ0Z0dlRqcE9mZHJhR1A3czRQRzEzZlJmYWkvOVcwc0hCdWJmOG5naDAvSzBHcFJERUF2QlhhN2hsc3oraG9PV0FXaHhpZ3E5UEdSZ2hiNTdOajJ4cG1KUlZoTm4wd2hkSnpjTHFCMWppc3VDVERscnN1WnVlTEVGcFBIM3BwTHBNYm5Ed1lvMi8yVFNWSUlpWXphdHljenY4VkhSUk5BbTdjRFZrbzNzZHlxMWQ3VmtaMjVpTXVKRWpUSEtGYldsbU9Zazh1L3J4dHZRZWwv; FedAuth1=cXhzeDQ5V1NWaHlwRE9WaUllaURxTEUwMGVKbjZ4L1FLWlBUbW5ZSS9jRkN3bU5yTCtud0RuR20vVHR2aHpqVWswUEQ2OTdhQ0dxOHk4Tk9QTTZHRkkwcytUaUdBeWRURElheHdkcGZDUklrZlFOelp4RXFLV2F0VGk1SWoydFdteWZnYy9oNUxXdDFaTk5NUHBXa282NER6Rnp3K0I4WEc2NGIzNHZWQ1ZkLyt0L2R3RmRaeVlGQ1R6WUpqVlIxTStJR0JLTEFzUCtqYW5HUnR2c0JGSnNWN2NiQkFldEpETDRKUFdMUGMrUi9zN01ROEZNN1RTTC9UVE1PalVOdVVmOGZtRjFIRzNvZGFVY3EwMi85T3d4dGttSS9vNzFZMTk5MDFpMzVBNmMxcnI4c0hxRlMrMEtmMXVYandjeS92c1NRbjAwZm9KczFPMW14ckJiclNMYXpZRHZpd2xxQ2lmRGMzOURtajhHZDBpcTgrODIrL1JRb1VRajBERWdhR1l4aklML1I1RzM4ZFpIUWpOakVaYlIwYktGNGFOQnlPVEJFQi8zTjROaEhGY01KVXFxYUhaVFhKenBibWphRTBBVWkzWWFFS0hmK0RnRFFzSGlQM2s3YlhQUjBBOFVmMG85MVdPbnI0TnF6aTl0U0tYQ2RJSzJJRzdTOHk3dC8wc1RZaHp2aURobGtwNmFrTEoyTkprNkdDall5NEl6SnR6NjdpWXhoeUhLeDlzYlJleHVBQmhnZlFoWnRFbEwyTk1kTkMxeWhjRnY2MmlBNGtEYk1nYUlhT3JFQXJnMWVhMnJBc05LV2pXWURLNTErV2huZUNLRllTMDJKeWhYb29qa3hZMlJDUFZlazcvb2tqZ3VvbU16dk1JZU1Hc0VsTFNjb0F4UXVEbXRkeEppUEJCbnNrd0VVVURtd095MjNKeEg0ekY2UlB4UXQzYy9OU1o2ZGFpRjZONTVqRU93RjhxRzFraFZLZkRDOEFkR0JBVmhHTWt0VmhwVURYRHpPUFlSb0ZMTjkzWTFYdE16RWVWdERUSmZzU1pFaHlkdlZtK2pXZ2tHQTcvaWY1aVV2eFRqODBjRm4wdFJ5SmxYV2huYWF4V1FCT0dkTEEycTNpM1pWWG5GT1VQaU8rVU1QRXduU3l1R3N1Z1d6MjNoZjlCOG1YQUd1TlJPK2ZIM0ozaldFZ3dkN0hVK0dlYTdackVaSTdaSXNjNktHSSt6UTEyeE1oV09Gdll2blc8L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==; mf_ebebfd35-9c00-437d-acb5-7d11f63a7a19=827c295b271204d7063169d367b285c8|032456131681e343676ead8662ae00940bf5d0b1|1521893306818||2|||1|14.32' -H 'RequestVerificationToken: 5ndndGJ0c7HImKQs-LfYDfQKjzQvsK2z7ZNSQQeAnk9FpuCg_UvF00iNEXgd9aEH01YMo4qA70shMMC1M6CiQ_Z89ik1:7RlE5OVeUBplhpkbpgkQK1z--Ds3lb0jd9NCF3YrpZ7qUr73CrZjPRhqB_1RFFX-XpQBnjQ1XTMul-25Obx8tESrf1nPyxcxaWSvQOjAgrpRNJjdwgXby0iJ0E57cDw-_jPU8w2' -H 'x-correlation-id: ecba0f69-da53-431e-8952-9e468831d0b9' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/indexdev?oloc=219&dd=ZGM9MjY3MTImYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY3MTImYnBjPTQ0MzUxNQ2' --data-binary '{\\\"documentCode\\\":\\\"26712\\\"}' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Publish",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6b5eb19-e4e2-494a-8079-499110ea10cc",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test('Published Event', function(){",
+							"    console.log(result);",
+							"    pm.expect(result.status).to.equal(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"documentCode\": {{documentCode}},\n\t\"sendNotifications\":true\n}"
+				},
+				"url": {
+					"raw": "{{urlNode}}/psevent/action/doUpdatePublishStatusDocCode?oloc=220",
+					"host": [
+						"{{urlNode}}"
+					],
+					"path": [
+						"psevent",
+						"action",
+						"doUpdatePublishStatusDocCode"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "220",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/data/psevent/action/doUpdatePublishStatusDocCode?oloc=220&c=NDQzNTE10' -H 'Pragma: no-cache' -H 'RequestVerificationToken: 5t49-C4kHblS3K0PptBRig7kgw-HTzXufdvLVTo0iafW_qMH4gagFBnqa4PKSbFKeRqtZx_7kk-LUQi49BzhA2O1u8M1:urINMPZs7LcjN5mEiMNGCywTwHJEBWuDStRrPtUCvpRoJws9gSL46eBUuCie2lObfaMKIn3d4zYyMJEekgPTEdJMi-M8zoEa-ZwfDxb-KZtEuiwszonpR4Bfqur21SrU57rtCA2' -H 'x-correlation-id: 14f8012e-f999-4ec7-88f1-80c2f1d21990' -H 'Origin: https://smartqc.gep.com' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"ja-JP\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Referer: https://smartqc.gep.com//Sourcing/indexdev?oloc=219&dd=ZGM9MjY4NDQmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY4NDQmYnBjPTQ0MzUxNQ2' --data-binary '{\\\"documentCode\\\":\\\"26844\\\",\\\"sendNotifications\\\":true}' --compressed"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f8cfb974-1f47-4ae5-92f9-899a8e3110fe",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a88e504a-c350-43c7-87c3-37c9cf9945c2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

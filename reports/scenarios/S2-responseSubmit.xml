@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="supplier-submit-response" time="21.445">
+  <testsuite name="Register Session / Register Session" id="4d2d91ea-088a-433c-bc3a-a06d9e54806b" tests="2" time="0.78">
+    <testcase name="Status code is 200" time="0.78"/>
+    <testcase name="Session generated" time="0.78"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Id" id="746408f5-e581-4c6d-b731-9f160fd26c29" tests="2" time="0.508">
+    <testcase name="Status code is 200" time="0.508"/>
+    <testcase name="Event id present" time="0.508"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Event" id="00df1f73-4abb-4fd6-a2aa-135fc299b0b6" tests="3" time="1.454">
+    <testcase name="Status code is 200" time="1.454"/>
+    <testcase name="Mandatory Guideline present" time="1.454"/>
+    <testcase name="Pricesheet present" time="1.454"/>
+  </testsuite>
+  <testsuite name="PriceSheet / Get Pricesheet" id="e7dff589-97c3-44a6-901e-51ee14197298" tests="1" time="2.026">
+    <testcase name="Status code is 200" time="2.026"/>
+  </testsuite>
+  <testsuite name="PriceSheet / Update Data Row" id="daee8213-6416-4dd8-8d80-a22ee27b0ede" tests="1" time="2.575">
+    <testcase name="Status code is 200" time="2.575"/>
+  </testsuite>
+  <testsuite name="Questionnaire / Get Questionnaire" id="0db6f8c5-21ee-4db7-b8c8-025697c785e3" tests="1" time="1.991">
+    <testcase name="Status code is 200" time="1.991"/>
+  </testsuite>
+  <testsuite name="Questionnaire / Save Questionnire" id="0bd5ac78-99e4-4b19-be96-77181da77f02" tests="1" time="1.325">
+    <testcase name="Questionnaire saved successfully" time="1.325"/>
+  </testsuite>
+  <testsuite name="Submit Response / Submit Response" id="0dcaf770-50f4-46b4-928c-e1e73e9ff755" tests="1" time="10.786">
+    <testcase name="Status code is 200" time="10.786"/>
+  </testsuite>
+</testsuites>

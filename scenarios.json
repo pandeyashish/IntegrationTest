@@ -1,0 +1,102 @@
+{
+  "sourcing": {
+    "init": {
+      "name": "Create Event",
+      "collection": "createEvent"
+    },
+    "scenarios": {
+      "publish": {
+        "name": "Buyer Publish Event",
+        "description": "Buyer publish event",
+        "code": "S1",
+        "templates": [{
+            "collection": "publish",
+            "actor": "author",
+            "data": "author"
+          }]
+      },
+      "responseSubmit": {
+        "name": "Supplier Response Submit",
+        "description": "Supplier response submit",
+        "code": "S2",
+        "templates": [{
+            "collection": "publish",
+            "actor": "author",
+            "data": "author"
+          },
+          {
+            "collection": "responseSubmit",
+            "actor": "supplier"
+          }
+        ],
+        "globalsDependent": true
+      },
+     
+      "scorevalidation": {
+        "name": "Score Validation",
+        "description": "Score Validation",
+        "code": "S3",
+        "templates": [{
+            "collection": "publish",
+            "actor": "author",
+            "data": "author"
+          },
+          {
+            "collection": "responseSubmit",
+            "actor": "supplier"
+          }
+        ],
+        "globalsDependent": true
+      }
+     
+    },
+    "actor": {
+      "author": {
+        "netSessionId": "",
+        "userExecutionContext": ""
+      },
+      "supplier": {
+        "netSessionId": "",
+        "userExecutionContext": ""
+      }
+    },
+    "collection": {
+      "publish": "/features/buyer-event-publish.postman_collection.json",
+     
+      "responseSubmit": "/features/supplier-submit-response.postman_collection.json",
+      "responseWorkbench": "/features/buyer-response-workbench.postman_collection.json",
+      "flipToContract": "/features/buyer-flip-to-contract.postman_collection.json",
+      "scorevalidation":"/features/Score Validation.postman_collection.json"
+    },
+    "template": {
+      "publish": {
+        "pre": [],
+        "post": []
+      },
+      "responseSubmit": {
+        "pre": [],
+        "post": []
+      }
+    },
+    "environment": {
+      "qc": {
+        "atg": {
+          "author": "/environment/qc-atg.postman_environment.json",
+          "supplier": "/environment/supp-qc-atg.postman_environment.json"
+        },
+        "ascena": {
+          "author": "/environment/qc-ascena.postman_environment.json",
+          "supplier": "/environment/supp-qc-ascena.postman_environment.json"
+        }
+      }
+    },
+    "data": {
+      "qc": {
+        "ascena": {
+          "author": "/data/qc-ascena.json",
+          "supplier": ""
+        }
+      }
+    }
+  }
+}

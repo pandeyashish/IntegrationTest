@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "66e6e8fb-efe6-413f-a18b-9a79fddbb19a",
+		"name": "BuyerResponseCompletion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register Session",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8083b354-a338-4688-a53f-2ec1c0bed6a7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "681ec8ba-8a0c-42d7-b0dc-1d28d0101477",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const sessionId = pm.response.json();",
+							"pm.environment.set('netSessionId', sessionId);",
+							"pm.test('Session generated', function(){",
+							"    console.log('Session: ' + sessionId);",
+							"    pm.expect(sessionId.length).to.equal(24);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "x-correlation-id",
+						"value": "{{guid}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/SourcingService/SourcingIntegration/RegisterSession?oloc=219",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SourcingService",
+						"SourcingIntegration",
+						"RegisterSession"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "219"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event Post Publish",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf7b8711-e7ef-4914-9210-78d765fbaea7",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"// Get full event response",
+							"const result = pm.response.json();",
+							"",
+							"console.log(\"result.suppliers\",result.suppliers);",
+							"",
+							"var selectedSupplier;",
+							"",
+							"result.suppliers.forEach(function(val){",
+							"    ",
+							"    if(val.partnerCode==508296){",
+							"        selectedSupplier=val;",
+							"    }",
+							"})",
+							"",
+							"pm.test(\"supplierResponseCompletion data is present\", function() {",
+							"    ",
+							"pm.expect(selectedSupplier.supplierResponseCompletion.length > 0).to.be.true;",
+							"});",
+							"// 1 pricesheet and 1 questioniare.",
+							"pm.test(\"supplierResponseCompletion data has response of both questoinare and pricesheet\", function() {",
+							"    ",
+							"pm.expect(selectedSupplier.supplierResponseCompletion.length).to.equal(2); ",
+							"});",
+							"",
+							"var suppRespObj= selectedSupplier.supplierResponseCompletion;",
+							"console.log(\"selectedSupplier.supplierpct\",selectedSupplier.supplierpct);",
+							"pm.test(\" response completion % for neha supplier is 100%\", function() {",
+							"    ",
+							"pm.expect(selectedSupplier.supplierpct).to.equal(100); ",
+							"",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+                    {
+                        "key": "RequestVerificationToken",
+                        "value": "{{requestVerificationToken}}"
+                    },
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "x-correlation-id",
+						"value": "{{guid}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{urlNode}}/psevent/5ac691f9b4885a2fc062f77c?oloc=220",
+					"host": [
+						"{{urlNode}}"
+					],
+					"path": [
+						"psevent",
+						"5ac691f9b4885a2fc062f77c"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "220"
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc-sn.gep.com/data/psevent/5a15390862bfe8166c5d4c75' -H 'Pragma: no-cache' -H 'RequestVerificationToken: 32LZSBOy1b1LyT86MOnCpWc6y5H4g9e0B539yEKpZaDoppRJIqgdxwmvXCO0lbN1QiC4P46x4c_OsYZt-FE_zy6FeUw1:yKX0cOR1mUvMZru4hYm6M8gK4ST4KZpielPmMrHbUoc0LmdUamhbdEIp0b7z3XZCVE-NSWvFrOzDIAJMYDfKq1ONGxumuInpUcxsn6hJuxXPkJz1eBGYNh2UNJ5fF5eF0H1nxw2' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'netSessionId: x1x0f1kzw3y4bgw5pg0ihj22' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=216&dd=ZGM9OTcxOCZicGM9NDQzNTE10' -H 'Cookie: _LastLogin=11/21/2017 10:58:02 AM' -H 'Connection: keep-alive' -H 'dd: ZGM9OTcxOCZicGM9NDQzNTE10' --compressed"
+			},
+			"response": []
+		}
+	]
+}

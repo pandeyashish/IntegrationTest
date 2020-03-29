@@ -1,0 +1,376 @@
+{
+	"info": {
+		"name": "buyer-questionnaire",
+		"_postman_id": "30831910-ffb5-453b-b868-fde0d5564705",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Questionnaire",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b5db4c2-b6b7-4c2c-bbdf-be000940063c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"const questionnaireId = result._id;",
+							"pm.environment.set('questionnaireId', questionnaireId);",
+							"pm.test('Fetched questionnaire id', function(){",
+							"    console.log('Questionnnaire Id: ' + questionnaireId);",
+							"    pm.expect(questionnaireId.length).to.equal(24);",
+							"});",
+							"",
+							"const questionnaire = result;",
+							"pm.environment.set('questionnaire', JSON.stringify(questionnaire));",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"event\": \"{{eventId}}\"\n}"
+				},
+				"url": {
+					"raw": "{{urlNode}}/questionnaire?oloc=220",
+					"host": [
+						"{{urlNode}}"
+					],
+					"path": [
+						"questionnaire"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "220",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/data/questionnaire?oloc=220&c=NDQzNTE10' -H 'Cookie: _ga=GA1.2.2074224313.1501588198; mf_user=ff5cba581f64c9d4aaed2732fa227b67|; smartqc-sts-bpc=sF5tpGS3SRlRNeSvMyxX/A==; ASP.NET_SessionId=lnbijzaqnsmhxwqx2qq4gdmh; _LastLogin=3/22/2018 7:20:48 AM; smartdev-sts-bpc=F+S4GKWN8QcmQFPQD111KA==; _gid=GA1.2.856654489.1521710041; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il9kOWQ4ZDFhNC01NTgxLTQ4YzAtODY4ZS0yYTY3NDBmMDk1N2EtRDc1RTQ5RDE4NUQwOEVBRkM5MEMxMDI3MjE0MDE3OUEiIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6NWZjZTI0OTItNjMwZi00OWRlLWIxN2EtMGI1NjVhYjQ3NWMzPC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFFSXNZKzFsUDdnZHREV0dVZytvQjdmT3EyU0tIOVlUeVdHNVBzTTdMd2NhSVJmZmhzS3lUSmNTQUM5YXpaM25uMlY5ZldYeHpsd0YzRWJnMytoMkxyam9ET0k1cC9ybEhDWFNkN2pDWE84bkVMS0cvQjg4d3VwZGc2djQzYzB1S1Z2ZnZNc1VUMWhNZk5TSG1CZVVnN1JBbVFTc2tXb1BRcWV0MmdsZG5jc0pEVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUFzTStMSTNlU2V2QzdLUGZVeElzNTRCalQybWROM2FoektEN2VkZUFnVjVzbDNBbzZFVVl4WDJuYVp1cmFDOGZ2eUJrVXBDM3pVTFQzVzR2TXlFOGliZEdlVFBlVkxrZkF3VHRpRXVHbjRpV3YxOXVFTGxuOVNEWjNlK00vRDdtSnlHSFZUY1BSakJmZnpjZ3dXQ21RaWFiR3czUmFNbVZUajZKRVNWamNydkd3QkFBQVUrNlNNM2FORmNTUFcxRGpibWp5K056K1F1QitQa21FU1MyUXFidERUeDJGaWJveVFQdHdhUllwSTFydWxCQk4rR2RXbWVvMlNXend4MXptME1tZW0wSWxITEpPckZWVlpwcnNOeWdKc21MZUxrMDNUVURPN3BkY1FTRFV1OXByaEl2VzNTeXpjdVd4Mjl1MjhNd2srdmJhQmI0aEEyKzIvK09zcmg0cEUxaHBEZ2l6NWIrSVVkcElxUGVpOXM4clY0ZGc4MWJIWHNCNW5PN0I4UjlKWGFLK3lxTEhsQkZTRnFzL08vTkpYQVlxSnFNL2w2MFJleGtWb21ZeWtCTy9BeHliRjc4TzAyOHZYOU1ycHdsbVF6OEg0WTFrVVRvdTE5L29vVE5EZkpkNnFwOUxMYXphdVdmL2VTSUtWU1dyVC9rbWxGb1gvZ0p0dEcwd2hUSmlBZ01OUmkyTng5a3Jldno5dVhMVGJFQ1JNWGFlQjFLRkpoNnk4bE9xM243ZmQ1UFIzYnllTEJLY1NxMUU5V21OZ1REQ2NBRFJHV2RGWTdwOVBuOURyQ2xTaFVNYk9PZTJpVFZqZ1ZzdGFraVBFNEdxT1RkRFVkRjlvSVFzdFhHUjI3VVBaTllIdktpbStrK25RTWZnVHBWd25sbVRVb2hxaTFBWlpFSEU1dWdJSWdMUFhrS1hvZmtxL3dPMS9NZ0p0cWhOeE5iMGZKS2F6U3NtcDY4QzJOVzY3Vi9kTVhXZUtJdkdSa0o1RDJjdGErd1VWSlg0SXNsRFNyV1loQVl5NWdKRlh6eE9tMC8xMkw0aUhUbUpod0RqSHFCMm16OHdBZXdyOVh3RXdDWXdSdVdqK3M4QXViejc3NHFQMHhC; FedAuth1=TzVzY0RCNURodTJXUjdYekVJWjhkaFowbi9tSkt2NkZST3NZSGl4dzJCOVNBRjNCMGFEbnE4cVh3cXM3RWtOS0tBTU1jS1hwWU5BWFNWSzVqSncyM0ZQWU1NVmhqMTlFZXQ1d0lYN0dKdWFPTG13NWxRUk9TalJOWENZMERMbFdiU1Vuaks0Q2NyME05Y1lrbm9MSkFBS0QwZEVDUGZoWUFncEcxTXBTdk9JNXNYYTBJUWRMN2dQSTZFalNJYVV2VGRSbEJud0pnbGxsSklkRDIwWndmK1VzWXAvS2JsVWZ1SGNwMlpCSUhNbzVkaG5sS1FudlA4THdhZ2c2Zi9KdTk5UE00YzVyb2NSSTZvRXVBMDEzdVFMQWhDRTRuWlExbmFkZVA2TlJWbUE5Nmw3RzUxcWFNSnlsYkxqMWN2UnZPWjI1WVEwNm0wN25KK3ZlNEEydTMrK3E5RXFGZHY5ZXpZdCtUNy9KQjUzNlNaRVAwVGZRbmFsbkIyUjNHUlFUcm9hZDk1emZmYUlwUVdDYUh0b2ltaVNtVHVCSDQ2SzlRTFVlbWdscWQ2VzBUWDR2cU9zbEVKc25EKzhLOGtsdDdNODk0NThlN2g5T3BPVGM1RW9mTStHZkVrQUJ1eFhLakthMUxTdGk1T205cWVYaWVWYWthOGgzVGZEWnkxU25NKzFYYVo4UnVrcmtoSXlsVFpxbTdmV2pFYTl2SHo2TmVqTkkvdmRaU0dZNTZGYnZJQmhpZUZoSnZKaUZGK2VUbnN6STNjeHQvRkh2NVhGMlRicW1Fd0Z2TzZBTW9RemxyNURrRDY5SlA1N1lrYWc0bWpDMzZYYUF3b3E4aGNTMDlSVENVUSszVDVRK3FlTmhRRUxLTDBocVpWWVQ4TGVNWVd3eGxzdTlZTzl6RTdWcURPcmtKRW5xb1VJczV6cTREd2gzRVFUK0VCQUpqUEJJT2ltQXBKU1VjTGdnZHVmbUdHcEo1MmNCMlM3RnFZWmtqd214UWRmdWlsNzAyY1J3Q0FIMUNFVVQ2c3hVT25mR0pCTlZ4WlpOcC95em5hanBGNUF0TjlJRWhiTWVaRVhQUS91L21uR3B5eEIzb0ZpVHVWKy9iWmFydnV6eHg1L3NsOHdBWUp4anMrRldrdThDK294aWNscG1Cb1MxMFR3TFg2OVNnTklxdDYyNkx3bTlxM1pBc3hLRjVZZEdpUnJ1TXFacnpBNzJ6OC9oZTZSRUZuazNRdVRYdWpYQjE8L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==; mf_ebebfd35-9c00-437d-acb5-7d11f63a7a19=c538fca918342a7cba8407f39391fd7c|03233034b24cbc66c4b98f2eefbf31593f80f180|1521798581244||2|||1|14.32' -H 'RequestVerificationToken: sxoOb2bdoqDQxWj_zRUeVWosyeteypRuxZYQDRYdXR8UtySqnef6QgLlF_fJVNGfawSVGdRx6PKBvjx2KH70eYcU6oQ1:5qwVXjC7WwrX-Ez2O-kI2_9WVjGlaOSICPuzyZNIFhFKkJbB47o8GJ8oQB9RPWg1cLmtEkdUtI_l30zOFqG4iHntrdC-MdkNZTO6JWfkSUgjNQAAnhfpG-CSIhc7SMPXawkkcQ2' -H 'x-correlation-id: 531194b2-66ee-4b29-8b9a-851fca539955' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=219&dd=ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' --data-binary '{\\\"coAuthorEvaluatorAuthoringStatus\\\":[],\\\"event\\\":\\\"5ab4cce2c899901de03ba8bd\\\"}' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Question",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "838c52ed-ebcc-4701-8e7e-2c86b85eb578",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"const questionId = result._id;",
+							"pm.environment.set('questionId', JSON.stringify(questionId));",
+							"pm.test('Fetched question id', function() {",
+							"    console.log('Question Id: ' + questionId);",
+							"    pm.expect(questionId.length).to.equal(24);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"coAuthorEvaluatorAuthoringStatus\":[],\n\t\"type\":1,\n\t\"questionColumns\":[\n\t\t{\n\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[],\n\t\t\t\"type\":0,\n\t\t\t\"dropdownData\":[\n\t\t\t\t{\n\t\t\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[],\n\t\t\t\t\t\"score\":0\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t],\n\t\"questionRows\":[\n\t\t{\n\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[]\n\t\t\t\n\t\t}\n\t],\n\t\"questionnaire\":\"{{questionnaireId}}\",\n\t\"sequence\":1,\n\t\"eventId\":\"{{eventId}}\"\n}\n\t\t\n\t\t\n\t\t"
+				},
+				"url": {
+					"raw": "{{urlNode}}/question?oloc=220",
+					"host": [
+						"{{urlNode}}"
+					],
+					"path": [
+						"question"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "220",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/data/question?oloc=220&c=NDQzNTE10' -H 'Cookie: _ga=GA1.2.2074224313.1501588198; mf_user=ff5cba581f64c9d4aaed2732fa227b67|; smartqc-sts-bpc=sF5tpGS3SRlRNeSvMyxX/A==; ASP.NET_SessionId=lnbijzaqnsmhxwqx2qq4gdmh; _LastLogin=3/22/2018 7:20:48 AM; smartdev-sts-bpc=F+S4GKWN8QcmQFPQD111KA==; _gid=GA1.2.856654489.1521710041; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il82YWRjZTNiMS01M2QzLTRiMzUtOTliOC1mYTViM2YwM2VkMjItQ0NEMkQyMDQ3Q0ZERUZERjhDQTA2RTJGOEFBMjZGRjQiIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6NTUyMmM4NjktMGY3YS00M2JjLWFmNWMtN2ZhMzllNGMyMzMzPC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFMNnZENXVrRk16U095bzl4czJ0QnFuOGVyUkJ4eGhoakNCSW1MZFRDaTRGZms1bjBHaU5lVkE0anlYeTNPdVp0WFJLMXJBbTlIbmZSVkpuNjBhRmlOZ0llbWJueXowb1cxYXdYcExINWJ0NS9oNHlweFFrU2w0dlp4MFRCeGlzaFp2OWRWZ0ZSekVUMEMzQU5vbXd6NUMxTWpMT3dZZHVqM3QrV0UzMElLUzlEVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUFZUSs4cXlUK3VVUFRNaVBPVWdvSEQ2d2pCSENzSmtETU5jc1U1Wk1Jd1hJWmVMektGb3JFNWpkRm8zYTVlcmRLU1NnZTdPUE04Q1dWRnpudE9UMzdJclV6R3NqZGMrSEtXNzFVcU1zMnVBNUpUMFlzQVU4T09xOGwzM1orOTBLdmlUZ2ordExzeG9RUjExSnNCUmp2bEs3dFdsSncvMkpUWDdQYjVqaGFkbHJBQkFBQURSc0JpQVhsZTA1bnZncU5Bb0R3clZuNUlMN1RvQkNNcnJKdnUycWppV3RmUzhFenoycmFWczVDRzE4Ny9DQlB5S1FYOUFheGdIM0YxU1ZzZk1oUHBxUEYwWm0rV1Eva0ZQNmRScCt0aDN0TWVqWWJ4OHd1NENEMXN3VFVvVUY0cW0va2xTZkJ2dkNJUklzSERiQ1ZGZW5mcDEraUtpbHBmekZzRktOTnk1TVhZYVZVa3pMUkxjYmo4ZmpkMTRIdGlvMEhWMFBXT2RkalBhcUpReDlqUnpMZG95NTFtK2xRWTdHODgyMU9xdTNkZ0JXL2FxMW9FUFV5S0ZWdTJrbmhTcGU0K1VGQTljVUlhQ2l6cDNleGFmZ3pFVC9aSVhxWm9ocXB0NFRTdEtaTnd2dGxGTU94cU9sZ3dabU03SWN6NVFON3FaVUw5S3BsSjlXcTBzNUNvSkduUFloVS9ucFlGMGd1M2VySXBlY0F2SFZaR2J3TXJsdjI2K3loVkJycFNKczVuU0dmVW9aWWFFZG42YVpYVlZNbkJGZE9HcDhRU09KaXB1ODNDMncwdVU2Qk1YaXZIczRvcnN1Skd5T0RGUWo4UnliR0MzY0FQSFJHZU5ocS9XSGh5V0xuTUF1cG9EbTRLK2FGMEdDbmxGY1d3MmRwdzJkK21jaFJiMGtBdEU3WVozd01xblF5QWxOYm9oeFJRajU0YzdxNXBxcWQvMm5VUnFVaEhmUUtLbW1jUkxjMENZV0draVYvOUkvNE9xMzJXblZOY3dBLzBmOVlaekJnalVQYXVlR29SMzRZS3I4Z014c1JWY1hEUTZxcnZwcXUyRXJZdVl6dUJiUWRaaG1qbEZTbE1LUlRGeUl3Y3Rq; FedAuth1=UlFORy9TdVFuRlpuWnJEQlo4OEFtRG9jeXdFMnlqK095UzhldmlqOEhMK0daVFZWRzBMNUdjRjlCRXFxOWRWNzVuQnVMRFJhWGhKN254RW81a3BJOFEyNGRyeHVmbzdHdDhFVEFhWGJ3S2ZvNklwTHg0cnMyNVZsNUQ5Y1FURXk4ZU4xOU9mZkxHZjlEMDBaZkNpay9EUGV5bnVCSlEvcFNsNFloVE03YU1NbDhDWFo5RE1yL0QxMFZyY0JCVCtzbHJiU2NpZjBXN2tkc2lsdkcyZWVGcXBHNFFwL05GdU5jWTZZZzk0bDFNU1JXTUlGS1JPZnF5TWRkbzUranNaOHVZRVlLTmhSMmt0TnFYSDIxVHdXMW9TbzVXU3NBTkNUekVaN3l3MVhFU21LZDh2RHQwQ0lNQmFCMjBtQmFXVXowUGZ0b1ZXRVlnK2VTdTJrRUlWamQvTDBvQUNNNWVxUWYvd3JBMkRxZVJnWHdJbXJoUEJzUkxWU3lRUlJUV3BUdldDcHh2M05TMGVXTmpxWWM1K2R0cThHZWJ5dUtHNDA3K0tZUXh3L3FKcExXS3BEVmdhTUJ0Nnd5cFMwRHBmaENKLzdSWmM3Nnk3QTNMUitzVkwvUWxzNERxK2xRS2xUNjUzUXFQaThzVEpBWUI4QmFsRGhRUC9LV3BtM3dzdUpEbk5zTk0yZVlhSkNRNWpaZlFkNEZDRjZ0ell3UUc3SURadFVmWEVVRk9Md1AxemRMcHlYeStaWmJhWFpZb2tHVUVLU1ZRa0hmZzVvQTF2S1hxRzBRM3pDRTViajhCY09PYlZVL2ZESk5YVkJvU3c4NzduaE9idm13dWhUZmJpd0w3SzZ5OHV4NmdKREZkLzNrYzlhS3NSa2xWWDQ0N2VpQ3Y4ZkNWcnhkZGF3VUZ4bzlvS3IxNzg3ZG8zcHBXU2ZwYmNuMTZHcytUVTJDakR5TUVWQjgxNWMrZmRGN2xaWE5aSWRJVi9OamUxMXZKUUFWTFFobFJIMmVtWWJkMVk3VFFNRGtlbDJVUW1wdzBKRU9mT0R3bHRkbHdUSkhzaE1MZFM3RHBTVXEwa0tEUzF3TlRDMHo1STE2VjRTOUZsRnROMS9iZFhzUk5QVWZZRVZsS2dnREtJQUlWMEcyM1NkQU84YXFIeHV1N2xEVjlXRUtFYW94aU4yRGhXNTNPdE5iWFppNFliV1ZxWkNSTEV0QnQrOHo3eDFBQU9hM0NWV1ZNOFkzeVdLSmw5akJmZjRIMm82TGZMMG5jRUNNaDdhVXNBPT08L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==; mf_ebebfd35-9c00-437d-acb5-7d11f63a7a19=c538fca918342a7cba8407f39391fd7c|03231849d2b3c13e232bb64bbf773da088ebbb5a|1521800926512||1|||1|14.32' -H 'RequestVerificationToken: sxoOb2bdoqDQxWj_zRUeVWosyeteypRuxZYQDRYdXR8UtySqnef6QgLlF_fJVNGfawSVGdRx6PKBvjx2KH70eYcU6oQ1:5qwVXjC7WwrX-Ez2O-kI2_9WVjGlaOSICPuzyZNIFhFKkJbB47o8GJ8oQB9RPWg1cLmtEkdUtI_l30zOFqG4iHntrdC-MdkNZTO6JWfkSUgjNQAAnhfpG-CSIhc7SMPXawkkcQ2' -H 'x-correlation-id: f9218f1b-4aa7-494e-82a8-882937525000' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=219&dd=ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' --data-binary '{\\\"coAuthorEvaluatorAuthoringStatus\\\":[],\\\"type\\\":1,\\\"questionColumns\\\":[{\\\"coAuthorEvaluatorAuthoringStatus\\\":[],\\\"type\\\":0,\\\"dropdownData\\\":[{\\\"coAuthorEvaluatorAuthoringStatus\\\":[]},{\\\"coAuthorEvaluatorAuthoringStatus\\\":[],\\\"score\\\":0}]}],\\\"questionRows\\\":[{\\\"coAuthorEvaluatorAuthoringStatus\\\":[]}],\\\"questionnaire\\\":\\\"5ab4d6ccfc0cb80a90e2af68\\\",\\\"sequence\\\":1,\\\"eventId\\\":\\\"5ab4cce2c899901de03ba8bd\\\"}' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Save Question",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7705a749-d03f-4718-a175-e11c22ea65b4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"_id\":{{questionId}},\n\t\t\"accessMask\":107,\n\t\t\"coAuthorEvaluatorAuthoringStatus\":[],\n\t\t\"questionText\":\"Test Question\",\n\t\t\"type\":1,\n\t\t\"questionColumns\":[\n\t\t\t{\n\t\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[],\n\t\t\t\t\"type\":0,\n\t\t\t\t\"dropdownData\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[]\n\t\t\t\t\t\t\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[],\n\t\t\t\t\t\t\"score\":0\n\t\t\t\t\t\t\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t\t\n\t\t\t}\n\t\t],\n\t\t\"questionRows\":[\n\t\t\t{\n\t\t\t\t\"coAuthorEvaluatorAuthoringStatus\":[]\n\t\t\t\t\n\t\t\t}\n\t\t],\n\t\t\"questionnaire\":\"{{questionnaireId}}\",\n\t\t\"sequence\":1,\n\t\t\"eventId\":\"{{eventId}}\",\n\t\t\"questionAttachment\":[]\n\t\t\n\t}\n]\n\t\t\n\t\t\n\t\t\n\t\t"
+				},
+				"url": {
+					"raw": "{{urlNode}}/question?oloc=220",
+					"host": [
+						"{{urlNode}}"
+					],
+					"path": [
+						"question"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "220",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc-sn2.gep.com/data/question?oloc=220&c=NDQzNTE10' -X PUT -H 'RequestVerificationToken: g8vBJqDGs7Frs7x6aNTsmY0FLkvx7ykvehUhrMZYABclEwOa-kJNjS8cJ1JKlSsRO1Ne9qoLic10Lkp3M9a8QGUDO4E1:eWp6BQTMoYBJCetQ8zFYmvwziKtfVAsrRArQ0oGgcXaS7OhfWoUSPDHbWTfO2ia4VpK8_jXiqnNYX02Ra_kXPGFGDxclH2HTtuxs7K9PmCgrkwtcZQ_pNxJryAzoG0DupH5FXA2' -H 'x-correlation-id: c107ae37-d354-4b7b-8f1a-e3f4e53352f4' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=219&dd=ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' --data-binary '[{\\\"_id\\\":\\\"5ab5150d6627401c0cd7fcd1\\\",\\\"_links\\\":{\\\"self\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/question/5ab5150d6627401c0cd7fcd1\\\"},\\\"questionnaire\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/question/5ab5150d6627401c0cd7fcd1/questionnaire\\\"},\\\"parentQuestion\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/question/5ab5150d6627401c0cd7fcd1/parentQuestion\\\"}},\\\"accessMask\\\":107,\\\"coAuthorEvaluatorAuthoringStatus\\\":[],\\\"questionText\\\":\\\"Test 1\\\",\\\"type\\\":1,\\\"questionColumns\\\":[{\\\"coAuthorEvaluatorAuthoringStatus\\\":[],\\\"type\\\":0,\\\"dropdownData\\\":[{\\\"coAuthorEvaluatorAuthoringStatus\\\":[]},{\\\"coAuthorEvaluatorAuthoringStatus\\\":[],\\\"score\\\":0}]}],\\\"questionRows\\\":[{\\\"coAuthorEvaluatorAuthoringStatus\\\":[]}],\\\"questionnaire\\\":\\\"5ab514b16627401c0cd7fcd0\\\",\\\"sequence\\\":1,\\\"eventId\\\":\\\"5ab4cce2c899901de03ba8bd\\\",\\\"questionAttachment\\\":[]}]' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Save Questionnaire ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb2c5381-0d0c-47b4-b982-983ae001726a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function() {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test('Saved Questionnaire', function(){",
+							"    pm.expect(result.isQValidForPublish).to.equal(true);",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1f5a7002-b357-42bb-8960-bb36b9994cbc",
+						"type": "text/javascript",
+						"exec": [
+							"const questionnaire = JSON.parse(pm.environment.get('questionnaire'));",
+							"const userExecutionContext = JSON.parse(pm.environment.get('userExecutionContext'));",
+							"",
+							"//Get contact code ",
+							"pm.environment.set('contactCode', JSON.stringify(userExecutionContext.ContactCode));",
+							"",
+							"//Get client name ",
+							"pm.environment.set('clientName', JSON.stringify(userExecutionContext.ClientName));",
+							"",
+							"//Get created by",
+							"pm.environment.set('questionnaireCreatedBy', JSON.stringify(questionnaire.teamMembers.buyer.userName));",
+							"",
+							"//Get event settings for questionnaire",
+							"pm.environment.set('questionnaireEventSettings', JSON.stringify(questionnaire.eventSettings));",
+							"",
+							"//Get viewers for questionnaire",
+							"pm.environment.set('questionnaireViewers', JSON.stringify(questionnaire.viewers));",
+							"",
+							"//Get evaluators for questionnaire",
+							"pm.environment.set('questionnaireEvaluators', JSON.stringify(questionnaire.evaluators));",
+							"",
+							"//Get suppliers for questionnaire",
+							"pm.environment.set('questionnaireSuppliers', JSON.stringify(questionnaire.suppliers));",
+							"",
+							"//Get coAuthors for questionnaire",
+							"pm.environment.set('questionnaireCoAuthors', JSON.stringify(questionnaire.coAuthors));",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Q7\",\n\t\"description\": \"test 1\",\n  \"_id\": \"{{questionnaireId}}\",\n  \"accessMask\": 107,\n  \"createdById\": {{contactCode}},\n  \"createdBy\": {{questionnaireCreatedBy}},\n  \"createdDate\": {{$timestamp}},\n  \"lastModifiedBy\": {{questionnaireCreatedBy}},\n  \"lastModifiedDate\": {{$timestamp}},\n  \"authoringStatus\": 1,\n  \"markAsComplete\": false,\n  \"coAuthorEvaluatorAuthoringStatus\": [\n    {\n      \"userId\": {{contactCode}},\n      \"name\": {{clientName}},\n      \"status\": 1\n    }\n  ],\n  \"isMandatoryGuidelineAccepted\": true,\n  \"currencyList\": [],\n  \"eventSettings\": {{questionnaireEventSettings}},\n  \"suppliersSubmitted\": [],\n  \"authoringStatusType\": \"authroing\",\n  \"isAutoWeighted\": true,\n  \"supplierResponses\": [],\n  \"evaluatorResponses\": [],\n  \"visibilityMask\": 274,\n  \"totalQuestionCount\": 2,\n  \"isPushToRepository\": false,\n  \"coAuthors\": {{questionnaireCoAuthors}},\n  \"suppliers\": {{questionnaireSuppliers}},\n  \"evaluators\": {{questionnaireEvaluators}},\n  \"event\": \"{{eventId}}\",\n  \"viewers\": {{questionnaireViewers}},\n  \"type\": \"Event questionnaire\",\n  \"qualifiedRule\": null,\n  \"qualifiedsuppliersSubmitted\": []\n}"
+				},
+				"url": {
+					"raw": "{{urlNode}}/questionnaire/{{questionnaireId}}?oloc=220",
+					"host": [
+						"{{urlNode}}"
+					],
+					"path": [
+						"questionnaire",
+						"{{questionnaireId}}"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "220",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc-sn2.gep.com/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10' -X PUT -H 'RequestVerificationToken: C5CYn6ksDx1BOMFQQuQ3SaYuExm3sNuOgVsdFykTlRHCer2_CZJd3WXl25wAv8r69wKabyFRnxyQcWuoah3IGdBDdhU1:6XdSB5HNy16rNDdztf7l7apNun3ViD2EqbqXAqGqJVOa4BHFWRiCN89aYG5oy_MQR6ZfWNjAPCstlzfigWwjCPq8X9gr_NWfsFo4KJ0ub_Mfg-5fZyC3FlUTvIreQ0x6PmMTXQ2' -H 'x-correlation-id: 33d53272-66e8-4418-9244-6318500ad2ce' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=219&dd=ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjY1NzgmYnBjPTQ0MzUxNQ2' --data-binary '{\\\"_id\\\":\\\"5ab515fc89281721149ec1b8\\\",\\\"_links\\\":{\\\"self\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10\\\"},\\\"event\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10/event\\\"},\\\"questions\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10/questions\\\"},\\\"supplierResponses\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10/supplierResponses\\\"},\\\"suppliersAudit\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10/suppliersAudit\\\"},\\\"evaluatorResponses\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10/evaluatorResponses\\\"},\\\"stakeHolders\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10/stakeHolders\\\"},\\\"responseSummarySheet\\\":{\\\"href\\\":\\\"https://smartqc-sn2.gep.com:443/data/questionnaire/5ab515fc89281721149ec1b8?oloc=220&c=NDQzNTE10/responseSummarySheet\\\"}},\\\"accessMask\\\":107,\\\"createdById\\\":44351504000094,\\\"createdBy\\\":\\\"Neha Karande\\\",\\\"createdDate\\\":1521817083982,\\\"lastModifiedBy\\\":\\\"Neha Karande\\\",\\\"lastModifiedDate\\\":1521817839497,\\\"authoringStatus\\\":1,\\\"markAsComplete\\\":false,\\\"coAuthorEvaluatorAuthoringStatus\\\":[{\\\"userId\\\":\\\"44351504000094\\\",\\\"name\\\":\\\"ATG\\\",\\\"status\\\":1}],\\\"isMandatoryGuidelineAccepted\\\":true,\\\"currencyList\\\":[],\\\"eventSettings\\\":{\\\"confidential\\\":false,\\\"sealed\\\":false,\\\"training\\\":false,\\\"multicurrency\\\":false,\\\"skipScoring\\\":false,\\\"pricesTosupplier\\\":true,\\\"parentEvent\\\":false,\\\"diverseSuppliers\\\":false,\\\"mandatoryguideline\\\":true,\\\"eventPart\\\":false,\\\"suppliersUploadAttachments\\\":true,\\\"sheetSuppliers\\\":false,\\\"scoringType\\\":\\\"itemScoring\\\",\\\"priceScoring\\\":true,\\\"priceScoringInstructions\\\":\\\"\\\",\\\"questionnaire\\\":true,\\\"questionnaireInstructions\\\":\\\"\\\",\\\"diverseSuppliersComments\\\":\\\"\\\",\\\"defaultNDACode\\\":\\\"\\\",\\\"minScoreRange\\\":0,\\\"maxScoreRange\\\":4,\\\"questionnaireWeightage\\\":\\\"50\\\",\\\"pricesheetWeightage\\\":\\\"50\\\",\\\"isDiversePartnerCheck\\\":true,\\\"excludedDiversityMail\\\":true,\\\"eventAboutToOpen\\\":1,\\\"responseEndReminder\\\":1,\\\"evaluationStart\\\":1,\\\"evaluationEnd\\\":1,\\\"eventAboutToOpenReOccurence\\\":1,\\\"responseEndReminderReOccurence\\\":1,\\\"evaluationStartReOccurence\\\":1,\\\"evaluationEndReOccurence\\\":1,\\\"disqualifiedSupplierEventParticipation\\\":true,\\\"teamMemberSupplierResponses\\\":true,\\\"maxSuppliersAllowed\\\":4,\\\"enableAuditLog\\\":true,\\\"enablePublicRFx\\\":true,\\\"allowedQuestionnaireType\\\":\\\"1,2\\\"},\\\"title\\\":\\\"Q1\\\",\\\"suppliersSubmitted\\\":[],\\\"authoringStatusType\\\":\\\"authroing\\\",\\\"description\\\":\\\"test\\\",\\\"isAutoWeighted\\\":true,\\\"supplierResponses\\\":[],\\\"evaluatorResponses\\\":[],\\\"visibilityMask\\\":274,\\\"totalQuestionCount\\\":2,\\\"isPushToRepository\\\":false,\\\"coAuthors\\\":[{\\\"responseCompletion\\\":[],\\\"collaborators\\\":[],\\\"userId\\\":44351504000094,\\\"userName\\\":\\\"Neha Karande\\\"}],\\\"suppliers\\\":[{\\\"currency\\\":\\\"USD\\\",\\\"userName\\\":\\\"David .\\\",\\\"legalCompanyName\\\":\\\"ATG supplier company\\\",\\\"userId\\\":444247,\\\"collaborators\\\":[{\\\"isCollaboratorEditor\\\":true,\\\"isPrimaryResponder\\\":true,\\\"legalCompanyName\\\":\\\"ATG supplier company\\\",\\\"partnerCode\\\":444247,\\\"userName\\\":\\\"David .\\\",\\\"contactCode\\\":44424704000001}],\\\"responseCompletion\\\":[]}],\\\"evaluators\\\":[{\\\"responseCompletion\\\":[],\\\"collaborators\\\":[],\\\"userId\\\":44351504000094,\\\"userName\\\":\\\"Neha Karande\\\"}],\\\"event\\\":\\\"5ab4cce2c899901de03ba8bd\\\",\\\"viewers\\\":[{\\\"responseCompletion\\\":[],\\\"collaborators\\\":[],\\\"userId\\\":44351504000094,\\\"userName\\\":\\\"Neha Karande\\\"},{\\\"userName\\\":\\\"ATG Admin Admin Test\\\",\\\"userId\\\":44351504000001,\\\"collaborators\\\":[],\\\"responseCompletion\\\":[]}],\\\"type\\\":\\\"Event questionnaire\\\",\\\"qualifiedRule\\\":null,\\\"qualifiedsuppliersSubmitted\\\":[]}' --compressed"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7f59affe-4444-443c-ab30-c7513d347788",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bed8044f-41e0-4d2b-9cd8-5d5f30aa958e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

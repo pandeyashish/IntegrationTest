@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="supplier-submit-response" time="125.04800000000002">
+  <testsuite name="Register Session / Register Session" id="60ca9e83-b3e6-490f-9c22-4cb11bd8b94c" tests="2" failures="0" errors="0" time="0.291">
+    <testcase name="Status code is 200" time="0.291"/>
+    <testcase name="Session generated" time="0.291"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Id" id="2cc19be0-9a9a-4fea-a991-442d20b32392" tests="1" failures="0" errors="1" time="0.42">
+    <error>
+      <![CDATA[Iteration: 0
+
+---
+testScriptError: No data, empty input at 1:1
+
+^
+---
+]]>
+    </error>
+    <testcase name="Status code is 200" time="0.42"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Event" id="1636cf07-3a90-4ebd-80db-542be30caf30" tests="1" failures="1" errors="1" time="0.389">
+    <error>
+      <![CDATA[Iteration: 0
+
+---
+testScriptError: Unexpected token 'T' at 1:1
+The page cannot be displayed because an internal server error has occurred.
+^
+---
+]]>
+    </error>
+    <testcase name="Status code is 200" time="0.389" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: Get Event / Get Event.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 500.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 500
+   at Object.eval sandbox-script.js:1:3).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Guidelines / Accept Guideline" id="2d8b4f41-a2c1-4216-9c16-d22a3f664c3b" tests="1" failures="1" errors="0" time="0.487">
+    <testcase name="Status code is 200" time="0.487" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: Guidelines / Accept Guideline.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 400.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 400
+   at Object.eval sandbox-script.js:1:4).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PriceSheet / Get Pricesheet" id="a0442b46-b82f-40f8-914d-3ab56aa346a4" tests="1" failures="1" errors="1" time="0.318">
+    <error>
+      <![CDATA[Iteration: 0
+
+---
+testScriptError: Unexpected token 'T' at 1:1
+The page cannot be displayed because an internal server error has occurred.
+^
+---
+]]>
+    </error>
+    <testcase name="Status code is 200" time="0.318" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: PriceSheet / Get Pricesheet.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 500.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 500
+   at Object.eval sandbox-script.js:1:5).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PriceSheet / Update Data Row" id="a08eae0d-1725-4bbd-a6bd-f4d640e5aaba" tests="1" failures="1" errors="0" time="0.226">
+    <testcase name="Status code is 200" time="0.226" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: PriceSheet / Update Data Row.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 400.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 400
+   at Object.eval sandbox-script.js:1:6).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Questionnaire / Get Questionnaire" id="5528b6ff-1658-45ec-9513-8648757e736e" tests="1" failures="1" errors="1" time="0.287">
+    <error>
+      <![CDATA[Iteration: 0
+
+---
+testScriptError: Unexpected token 'T' at 1:1
+The page cannot be displayed because an internal server error has occurred.
+^
+---
+]]>
+    </error>
+    <testcase name="Status code is 200" time="0.287" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: Questionnaire / Get Questionnaire.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 500.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 500
+   at Object.eval sandbox-script.js:1:7).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Questionnaire / Save Questionnire" id="10aba53f-3ad3-4778-9c5e-8948bfb9e1b0" tests="1" failures="1" errors="0" time="122.385">
+    <testcase name="Questionnaire saved successfully" time="122.385" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: Questionnaire / Save Questionnire.]]>
+        <![CDATA[Test description: Questionnaire saved successfully.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 502.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 502
+   at Object.eval sandbox-script.js:1:8).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Submit Response / Submit Response" id="dbf7bf7a-3fc3-4953-90b6-120804ac7ced" tests="1" failures="1" errors="0" time="0.245">
+    <testcase name="Status code is 200" time="0.245" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: Submit Response / Submit Response.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 500.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 500
+   at Object.eval sandbox-script.js:1:9).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

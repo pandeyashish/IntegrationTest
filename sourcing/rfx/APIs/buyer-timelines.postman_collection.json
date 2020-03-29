@@ -1,0 +1,190 @@
+{
+	"info": {
+		"name": "buyer-timelines",
+		"_postman_id": "8bb92a6b-ae05-4d29-bf9d-354ce2697481",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Edit Response Timeline",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "44c929f5-2203-4152-ae37-208ae3f39b48",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test(\"Response timeline adjustment\", function(){",
+							"    pm.expect(result.IsSuccess).to.equal(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"IsEndEditable\":true,\n\t\"IsStartEditable\":true,\n\t\"EndPeriod\":0,\n\t\"StartPeriod\":0,\n\t\"EndDateFormatted\":null,\n\t\"StartDateFormatted\":null,\n\t\"IsDisabled\":false,\n\t\"IsSupplierVisible\":true,\n\t\"StartDate\":\"2018-03-20T06:59:00.000Z\",\n\t\"EndDate\":\"2018-04-20T07:00:00.000Z\",\n\t\"TimelineName\":\"Response\",\n\t\"TimelineType\":2,\n\t\"DocumentCode\":{{documentCode}},\n\t\"TimelineDescription\":\"\",\n\t\"TimelineId\":{{quotingTimeLineId}}\n\t\n}"
+				},
+				"url": {
+					"raw": "{{url}}/SourcingService/Timeline/Post?oloc=219",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SourcingService",
+						"Timeline",
+						"Post"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "219",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/Timeline/Post?oloc=219&c=NDQzNTE10' -H 'Cookie: _ga=GA1.2.2074224313.1501588198; mf_user=ff5cba581f64c9d4aaed2732fa227b67|; smartqc-sts-bpc=sF5tpGS3SRlRNeSvMyxX/A==; ASP.NET_SessionId=lnbijzaqnsmhxwqx2qq4gdmh; _LastLogin=3/22/2018 7:20:48 AM; smartdev-sts-bpc=F+S4GKWN8QcmQFPQD111KA==; _gid=GA1.2.856654489.1521710041; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il8zOWI5OThjMS1iMTU3LTQ2ODItYTI2ZS1iOTIxMTBlYzk0M2ItQUU1MERCQjg2QTYwOTM3Mjc5OUYwRDE3RUEzOTUyQUQiIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6YThkMTE0N2UtYTJkMC00NzAyLTlkOGUtM2I5MjAzYmQwOTJhPC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFERjBiRlo5cVRZMWM5RmFRVnBySzZobzRQVW9HU1pENTdQUkhXK3ZSTmp5TE1QcVdmZWpiNnpJQW9weTBMaDRUbnFsTStHUFNGdktPT2NNYXRSQjhOa2h2alFRdG1SN1BHZWtRc1MvTHdBWFdnOHYvUGJTSzR2YkxweGdreExBRkl6K1NCeEltOG9ZOXhNS1QvQzZ1TDRsYndsdHNHNklTMXpuWS9kcXpDc1BEVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUFRVElHbmQvZ2R5QXA0emluS0FURVhMZEpuSHl2eklHMmFXQXVJN1p5eERuWjRSZE05YWxxMXBUQit2WTBheVpzV1YwbVBIeGphY0NISHBTRHRxMkRWMTd4Q2hFUFNmRHJxMGlvc2U3WHF3QSs5eUFKZ1BoZTJwS2RPUzQvaENlK09EcDFmSVZpZit4TGVIcVpvWkIxN0t5dE1oazFrRXhEOUNYN0h1eE9UZXF3QkFBQVpKd0pURERRaWFmSWZKN1RvelBCV1JCWGwwTFR4QWJ6QzhZMUl3SGxwNCs3M3pvNlhwT1gyZDlzeEZVY3p3aWo3RmtTeGI3cmM0MENMR2V5RlJyRzNRYkVrZzNZUkgvSTBpV3Vtdm5Yck1veXNhUjdiU3pZL0NhZktjVE05NUwzOTZLeDdaekE0RFpGKzZkVTRsRS90MHMzV0cvMXNXREU0d3ZxK3BOMi9IMS9XcWdDcmFVUm9nQktLWGFYRmdTTTYzUmVIWDREYXZBTHdDWU5YMDRLT0syczZZSkZOUzZnN3J5YXpEbXV6RGRNTXhNOGw2b0JjSFEyWnVIMTdkeWwvM1lsZjJHY2ZGWlluaTJwOTRzV1RrVFh2WllBUU8ybVhPd0diZ2Nwd1lreVRON3NqSU9WSXFuamdFbFV2YjQ3dHNRejFBVHB1WkZPdExhZ2lraFdCNU5VY2xtQjlZTTlsUHc0Q3JRNGk1RkM5UVpucitPTkE1RUIyTXFMN2hkMG5lbFhKM01Hc3dSVWU0bjRaWllrbUdQemE5dndQbzQ0bnp5TklxVlkwWk1IZ2tnN0xCdzBYS0J3SlFnV0xLaVJId25hQkJTOXNXTG0rM3ZmLy9JeGJYdng5K1p1U1VZdXpZK1dUKzk0dEZnQXhPbUhraW1Zd05leHFBYVFKYWFtWjE1MWJCYldhc1NOcHAwVUtYNVkwaTl5MXhMY3FtSWMxcDJXdjM2R2h1RmtNaHpyYzZxSWVPMkZIVDJ0a0dTS0Z3ZVJJMkt5Y1lpbmVLZzBBeDR3dkZzT3MxZ3dLUzlJcjdEWmx1dmxSVzd6djNva240WXF0ZFh0TXdwcXVlaTJuckVuamNsZmU0dnN6Ny9qVUZK; FedAuth1=czRzTlpEUGJHWVptQmkrdlovbDhyTVYrd1BKUFVaank3anc2Z0ZaNUlxeEI4T1BlZzBHRVo4NUFqbzZyNkxKcUkvR29kb2t0N0dGRHRpV01zZnl3d1VTNFY1RlQ4SGc1dDVSVGJ1SDFISVQ2NmV6WXJOZnZZMHRXcWh6SEN4YkdDdWpXVEtndlFxZ1hwRVBTWEhkMEYvRm82Qi9iNkY0R0luUlFyR3Z5bVJESHdFMGZFcWtTcDBzTjBrSXo0M3poOFhuZzRsa2dKSUR2U0MzWFp5TXI5N3phd082S3ZmZHo0dlZIZ0k0VDRyeVJ6aytZa05IdHFTQ1JQTUZPZWJSTktBelUyOXpvNXBZOFV1d2t3UnRDL2YxWURraU5nTjFvMGk1VllzM0RuWHV3OWFCazhEZXdaaHUyVDZ1WWQ3NVhVcmVlVWY4dExQKzlITkQ1TEJEVUEra3BBZmhkQTlFbnRUQzNxQ2R0R3FuVElzUHMxc1RuVkFLaVlCbnBYbExoSk8zUkg2ZmxYNys4aUpMcTkwVlB0bjUzNm1wdGRHc0RPWm5XZy80UDhPR1E3TmxpZHJzTDBiK1RkT2c0eS9CNW1KeGkzbjZ6UDFycG5aUklBQXR1S29hdWdrR2czQ2hDd3NqL0kwSlNsZEhjVWxBYTBWWkJydTZZWjIwekVXcVdYRWtHQjRSMElVNm1iMTBIMlZGakVRZkVxcGVTNmx0Z0t6S3h4eis3VS9YZld6N2tiQ2cwbTlWUVFPUm4vMGZONHdrZUlnOWh3eEJXcmJPdGNuUWdka25TalU3MFFHVnRJZE5zcnY3UUY2djkyQjRacXVIeE41MlJ6SXp3R004b2hHVk5vaWs4RnplbmU2KzMybFZqV3d1dmhqaklURnlQaWEydmlQV1Jua2p0ZjMvc05JZDRML0NCNEt3dTdiR0ZnV3FLV0xnWktvWk9RN0pEUWU4eitBR2k2cXp3akdDN2ZHWnBUV0tzY0JnTGhqUGZZWnkrUEpvMjYrNlE0dXNobXc0Z2RQV2R3RlJ2ZTNrcWhHSGkrMXZDMURFd2ZaMm5UeEV3WEZUWE9KT0puYUFyeVpKZjFZMlQwL3FqOU50VTNES2FJY2RZNE1ISTBienJwam5jZitPMmdLTkZzaThPTy80dU1UaEZQZm9peWJyTHRUVWlxaGNPU0dybCtBYld0UDVDWHdTMjk5elFRWkhCMHNXVi9KdlhDbk0wWHU2KzEyaXhZc2NGMklvc3o8L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==; mf_ebebfd35-9c00-437d-acb5-7d11f63a7a19=c538fca918342a7cba8407f39391fd7c|03224301095bfe2a5dacfcf77e6a4e370285e9e0|1521711682772||4|||1|14.32' -H 'RequestVerificationToken: IrzEAmkdbBqC4hGXfbmN9zEpg-ugufiqXlwNC6DbhDm0hzxeMx0zWW1DTAD6HpnAiJtAtl25Rd3lbo-JepiK3z53CZA1:5HSvhdd_1iYd0RiHosuv9AsfoDh4R9ypsq-sp0_LBLdqecRJfANRKY-UxYdaFcmshdfYdnF18pjeiFfzewkwY1fOx_elde6zcbfc6AleAQ2qhfvgKLSi9uWPr5YfHUEZ8aCgOA2' -H 'x-correlation-id: b752af25-77ee-48f9-b3d6-d6becb784c0a' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com/?dd=ZGM9MjYzODAmYnBjPTQ0MzUxNQ2&oloc=219' -H 'dd: ZGM9MjYzODAmYnBjPTQ0MzUxNQ2' --data-binary '{\\\"IsEndEditable\\\":true,\\\"IsStartEditable\\\":true,\\\"EndPeriod\\\":0,\\\"StartPeriod\\\":0,\\\"EndDateFormatted\\\":null,\\\"StartDateFormatted\\\":null,\\\"IsDisabled\\\":false,\\\"IsSupplierVisible\\\":true,\\\"EndDate\\\":\\\"2018-03-31T06:59:00.000Z\\\",\\\"StartDate\\\":\\\"2018-03-20T07:00:00.000Z\\\",\\\"TimelineName\\\":\\\"Response\\\",\\\"TimelineType\\\":2,\\\"DocumentCode\\\":26380,\\\"TimelineDescription\\\":\\\"\\\",\\\"TimelineId\\\":50806}' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Evaluation Timeline",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba71e221-6477-4bee-93bb-b80ec3be3024",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test(\"Response timeline adjustment\", function(){",
+							"    pm.expect(result.IsSuccess).to.equal(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{cookie}}"
+					},
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"IsEndEditable\":true,\n\t\"IsStartEditable\":true,\n\t\"EndPeriod\":0,\n\t\"StartPeriod\":0,\n\t\"EndDateFormatted\":null,\n\t\"StartDateFormatted\":null,\n\t\"DocumentCode\":{{documentCode}},\n\t\"IsDisabled\":false,\n\t\"IsSupplierVisible\":false,\n\t\"StartDate\":\"2018-04-21T07:00:00.000Z\",\n\t\"EndDate\":\"2018-12-21T06:59:00.000Z\",\n\t\"TimelineName\":\"Scoring\",\n\t\"TimelineType\":3,\n\t\"TimelineDescription\":\"\",\n\t\"TimelineId\":{{scoringTimeLineId}}\n\t\n}"
+				},
+				"url": {
+					"raw": "{{url}}/SourcingService/Timeline/Post?oloc=219",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SourcingService",
+						"Timeline",
+						"Post"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "219",
+							"equals": true
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/Timeline/Post?oloc=219&c=NDQzNTE10' -H 'Cookie: _ga=GA1.2.2074224313.1501588198; mf_user=ff5cba581f64c9d4aaed2732fa227b67|; smartqc-sts-bpc=sF5tpGS3SRlRNeSvMyxX/A==; ASP.NET_SessionId=lnbijzaqnsmhxwqx2qq4gdmh; _LastLogin=3/22/2018 7:20:48 AM; smartdev-sts-bpc=F+S4GKWN8QcmQFPQD111KA==; _gid=GA1.2.856654489.1521710041; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il9jMjllZmI4NC01YTAzLTRjYTAtYTY3ZS1kMmJkNTFmNTRiOWMtRkU2RjgxRTE2NTg2NTIzRTM3MzEwMUNBMTRENDZDNDkiIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6YjMzNWNiNTYtYjU0Mi00YmY4LThkZTUtYTgxMTAyZGQ2Mjg4PC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFJOEtNT0gyZ1dJMFJ6eDdBNTN2SUZ2VStUcTBTTFF6TUZEKzJWd3ZEMkhjck4xbzlBbEd5Z3dPcS94aTZkRzBsazJtUURpRlJyNWk2cGZlRU94RHUvTllmSEZsc2ZhbVorNXFmUlJkMEx6SW9tWjYrNTZGYStkN3Q0dFBRZHZnWEZTVElSbG9FSDhhRVJ2VklzWXlzZEo4NjBiNUFpY2FmRm84TElJWnJjaE9EVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUF4NkcwcXhGZk9scmxpand2bkIxSXhFZTVFejRYdkFwZGN4NlI4eUJpSHVETDVqMEx1cEtxT0xGTytRdEdia2Y3S1RaVHloU01ZSG94bHhhR2c3WXJXaUhpYm9PTjROZEhUM2ZRYjFvR05JYVQ3T3g4RmJ5SjFIQnZJVzFiMlk1Q1JaSWFSSDBIbm0xWXBMUDhlSjkvcXF0VFEyRkRJUTZ1ZGVWeUFhcWZsZmV3QkFBQVk5ZE5ZVEdZSVo2OFNFVWRMMWZBbTR0NDhzTGZTUW9yditiOGUrMkIrZWcvK3hFL0JhbDFFM0ZQSDQvenljbGkrR2JqOXc5MHAvM29ZVlMzVDc2czZXb1RYaDVyWHJZajcyME93Mm5FdFVVWC93dUNzVmF1SUQrKzVzMjk5a21oYXdXMjJzZEQzMkRyQU5QRFBZamloOVBvekxNTFF1bkZxOUFpQVpCRHQvb3lydWRkUStyUnJkOXNKNUc3L1RKTEhBcEY3dmVsamhJQ0lZdHZWeElkYVd3STF0Z3E1SFlsdlcxOXBVTmlLYVVTeWpPdVpRYnhMdTV4ZFY1NU9UaytKVjFNTGVEMlRtelpLZ214MC9hLzJiUmFqbmNCSkx5L1FEb0k2elZzNHk0UUVMY3pXYURPVWJPUnlwSksxTHIzbDZxZysyQVorSnVycWh5VGVZQ3AwK2w1eFFha1RKbVlKcFFKK0RMMGEzWU0vTjZpalhlRkpKOGlRcExadUM1WURwSXRmRFo1Ullhem5tWk5ZVEZvM3UwbjZZd0UrdGd4YkNraTBmRnByeFZpYnRnek9YUy9iL1ViYm5BRXVJRVI4cVd0SlgzdGhXcFF5M1JTZHhIeDVkYUV4T3VxTmdXcFRLazUwcHprWTdQOEJlTUxYTFMxTmUzNmxhcmdUMXJtZlhicmo5T1lkU0tVSk5ZMjZkUm5RV2xqcmRCbXZzSnpUN1FXWDd6bTRYS21Kdm01dnF2bkhIaStzYUNCcDduNVZ6Wng1bTVwRGFhZ2lIaHZTK0xLSmhtNFBrWmZSL2hZbTVtQlc5bG9id3FCSzM0dmgwc2NvOFlsenB2TklIdHAwWFFiNGUvd0xSTW5RSlpUcUN2; FedAuth1=UkJ1M1I1bXZWa2FyU2NIVUJRZUF3Y01RV29iL3I3ckxNNU5PRVNzYm5uYkFqVnltSFJ5bnhTa0NVd1dyZWxPenEzZWpTck9XQnRCcVE1WDJzcDQ2VzRJOU9xWXhPd0V4Ym9UbVhVWWNGSXBuN3VWRkU3Sys4cHpHU0phYjNocDdmOXZSRnlDYTBqZUUzbVRNbUVLZDhLUHRuYTFjMmZtOWxRRzZKdXYxbUlmSzFGeGJzc0VydXYyRS9uZUpVaGVZbHFpdVNBR2FGbVIzUUJsYTJHUnJNS1E3QWNKdFlBTUJZVmVVVW41d2ZpTnVqdnllS2h2UmJvd3RWa3l0YzV6RHlCMjhEZzVzWDdxb1ZvQmVXWERKUW9iN2RGbnYzQ01acXdJVThtOHlnRTdBSE5pajFiY25UbldScytwQmxtMTdBWDgrUHFGY1hQTVRuVHkzcmNVRmdqYSt6SDBkbjh4RURtaGJncnhZV3ZlTzVsd3h1WWhkamZlcUN2TUxCbkd4YnJnQW9QeDV6RUJxSHVzbkZ4dXVURHB1aTRaNEV0NnZlVkJSbmY2eVA2NzBTbHg1QkRhTlhVUDF4TGpPRTVoZVNXSG44N3RvMkxJSHluMTUwZC9pQVhZT1laVzA2N0xQRjd0ZXdBOWhRdTcrS3hseGFEUzErMjhNZGpYeGc1N2dCalB0a1RFbkxyQnZpZFNsaTNMSGRLYkg3YmNkV2JLVExhaFFQM3R2MmRDRVdTb28wWjQzWmZVREtzdjZKY29ORytRTUFHMVpTODZTWDBBRE92Qk5PS1lFemlCZnp5dWpnK3NqU0Jlci9NcGY3UnhuS1hSMDQ2ajZRQmFCdjdzSnlIZDhpeFZHR1BTdFQ4YmNlVE1Xd09PWE1adThnb1pJMW9VS2w4ZHBNSEdESDIrOVVxd0ZPYTRvREh0Z0ZFQ0ZzNTIyK2RNYm1OaUhCN0ZFZjlyeWFKSEhZS0ZjMFUzZ01KeENoSWVldER3QkplOGlYK1Rha2doeWJOTGxIcjJmbXc1K0JLVmF2UjNubG95QlROMjdLcUEyOFpaTW1oc2lEZzJIM1NidkpXYkJYOGM5VDNnaGltL2lCNkwvcEJheEhkbVJhN3hSN0loVTJUczF2OURmVDFNR1ptdGR2TFBqSjVjbFRKVjQrT28rT2NnbWxTNk1STmlRajZ4b3hJRjZvZkxIQnAxTjJhVExTVGVxS3V5eWIwbHdDSEsrYnpGRThBVEdBdjJlS0pHWTU8L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==; mf_ebebfd35-9c00-437d-acb5-7d11f63a7a19=c538fca918342a7cba8407f39391fd7c|032200487b30c6b59ee67bfad63c585003520bb6|1521716352962||1|||1|14.32' -H 'RequestVerificationToken: ct9levJteQ-nmoZBjp8XBiIHTqNiZ3DJddGIQrCPScd6V82K5_iZp8CON5JdFvjwoIS9SNkfQDAm3IO9147Y6dH9Ni81:TN-0iZrEwuxXONVfeI-shFDXtUxE4yDDlXsVoaB4DZ0KqUxLngjnAppruz7zUFtm79VEhT5WHpv23CiRUHsBuIj_bK1YBtenj5gN2QTI7i5OXwcPDkyJ4id9VokTRFwPvg7QIQ2' -H 'x-correlation-id: 984fe831-f972-4380-b4cb-e37c5f184216' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=219&dd=ZGM9MjYwMzcmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjYwMzcmYnBjPTQ0MzUxNQ2' --data-binary '{\\\"IsEndEditable\\\":true,\\\"IsStartEditable\\\":true,\\\"EndPeriod\\\":0,\\\"StartPeriod\\\":0,\\\"EndDateFormatted\\\":null,\\\"StartDateFormatted\\\":null,\\\"DocumentCode\\\":26037,\\\"IsDisabled\\\":false,\\\"IsSupplierVisible\\\":false,\\\"EndDate\\\":\\\"2018-09-20T06:59:00.000Z\\\",\\\"StartDate\\\":\\\"2018-07-19T07:00:00.000Z\\\",\\\"TimelineName\\\":\\\"Scoring\\\",\\\"TimelineType\\\":3,\\\"TimelineDescription\\\":\\\"\\\",\\\"TimelineId\\\":50288}' --compressed"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "986a1ef3-468f-4db7-9e7c-069e5fd9f3f3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6521d876-fd8b-44eb-a2ae-9d5f02f02ae9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

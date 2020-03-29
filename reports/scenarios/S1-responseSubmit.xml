@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="supplier-submit-response" time="132.119">
+  <testsuite name="Register Session / Register Session" id="18d41aa4-4809-45d7-963e-6065bfcd9cc0" tests="2" failures="0" errors="0" time="0.418">
+    <testcase name="Status code is 200" time="0.418"/>
+    <testcase name="Session generated" time="0.418"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Id" id="9a30df50-b524-4393-9cdf-004741436b0f" tests="2" failures="0" errors="0" time="2.64">
+    <testcase name="Status code is 200" time="2.64"/>
+    <testcase name="Event id present" time="2.64"/>
+  </testsuite>
+  <testsuite name="Get Event / Get Event" id="ed9bcdc1-418f-400c-95e8-111bf0fd2319" tests="3" failures="0" errors="0" time="0.679">
+    <testcase name="Status code is 200" time="0.679"/>
+    <testcase name="Mandatory Guideline present" time="0.679"/>
+    <testcase name="Pricesheet present" time="0.679"/>
+  </testsuite>
+  <testsuite name="Guidelines / Accept Guideline" id="c6e4731e-ba61-4fa7-8dc0-f8cb97173093" tests="1" failures="1" errors="0" time="0.481">
+    <testcase name="Status code is 200" time="0.481" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: Guidelines / Accept Guideline.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 400.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 400
+   at Object.eval sandbox-script.js:1:4).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PriceSheet / Get Pricesheet" id="678dea44-ea2c-4aa5-b3bf-f022585a111b" tests="1" failures="0" errors="0" time="0.397">
+    <testcase name="Status code is 200" time="0.397"/>
+  </testsuite>
+  <testsuite name="PriceSheet / Update Data Row" id="8d960141-a356-4fdb-bbe2-48f8efb6d8e5" tests="1" failures="1" errors="0" time="0.473">
+    <testcase name="Status code is 200" time="0.473" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: PriceSheet / Update Data Row.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 400.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 400
+   at Object.eval sandbox-script.js:1:6).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Questionnaire / Get Questionnaire" id="9e437ec3-aec8-405d-ae41-19b2c9e4c127" tests="1" failures="0" errors="1" time="1.075">
+    <error>
+      <![CDATA[Iteration: 0
+
+---
+testScriptError: Cannot read property '_id' of undefined
+---
+]]>
+    </error>
+    <testcase name="Status code is 200" time="1.075"/>
+  </testsuite>
+  <testsuite name="Questionnaire / Save Questionnire" id="170d3112-ade5-470b-b8bc-31cc0ccb521f" tests="1" failures="1" errors="0" time="122.105">
+    <testcase name="Questionnaire saved successfully" time="122.105" classname="JUnitXmlReporter.constructor">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8128eb46-5a4a-4dbb-8f4d-d815ac3bd8b2.]]>
+        <![CDATA[Collection name: supplier-submit-response.]]>
+        <![CDATA[Request name: Questionnaire / Save Questionnire.]]>
+        <![CDATA[Test description: Questionnaire saved successfully.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 502.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 502
+   at Object.eval sandbox-script.js:1:8).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Submit Response / Submit Response" id="97aff372-fd9a-414c-bdc5-f58368997cb5" tests="1" failures="0" errors="0" time="3.851">
+    <testcase name="Status code is 200" time="3.851"/>
+  </testsuite>
+</testsuites>

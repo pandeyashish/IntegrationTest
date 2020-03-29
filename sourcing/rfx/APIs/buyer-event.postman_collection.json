@@ -1,0 +1,399 @@
+{
+	"info": {
+		"name": "buyer-event",
+		"_postman_id": "1171c209-b2d4-4f17-a5b5-9672c67e0dcf",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Event",
+			"description": null,
+			"item": [
+				{
+					"name": "Get New RFX",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6e59f55-757a-4704-bc47-c1db4c8229a4",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"var atob = require('atob');",
+									"",
+									"const dd = pm.response.json();",
+									"pm.environment.set(\"dd\", dd);",
+									"pm.test('Generated DD', function(){",
+									"    console.log('DD: ' + dd);",
+									"    pm.expect(dd.length).to.equal(27);",
+									"});",
+									"",
+									"const documentCode = atob(dd).split('&')[0].split('=')[1];",
+									"pm.environment.set('documentCode', documentCode);",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ea14b07c-8ca6-4a50-8842-3a5d96a3ebe7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "RequestVerificationToken",
+								"value": "{{requestVerificationToken}}"
+							},
+							{
+								"key": "UserExecutionContext",
+								"value": "{{userExecutionContext}}"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/SourcingService/BasicDetails/GetNew?oloc=219",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"SourcingService",
+								"BasicDetails",
+								"GetNew"
+							],
+							"query": [
+								{
+									"key": "oloc",
+									"value": "219",
+									"equals": true
+								}
+							]
+						},
+						"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/Settings/GetConfigs?oloc=219' -H 'Pragma: no-cache' -H 'RequestVerificationToken: ZM7LUFLCq_5k0x9nymn0L9uqaVy-CBuANTBac4VyUyNZhL6KV0PcawSeoZ261Rs8Ohs9mMaQ5lvuTNBVl7Z6KNibplA1:-SCuK5AanaRFJdmtDWP38gHiO36gUoCDLeTMDpfdO4kerjlt7cg0NVosQDXDL4v63W_e9Z-qP1eSu2u9j_zbsc4CLkR0MrpWZiUH0QGVLhUTmWclfxWQpTwqvQIEdz9E45Zdhg2' -H 'X-NewRelic-ID: UAAPUFJRGwECXVVSBQAE' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'netSessionId: 2dvkqvmuobkg4dq0m2m2l1bv' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"Neha Karande\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"Neha\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":1,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":1,\\\"ShipToLocationId\\\":0}' -H 'Cookie: ASP.NET_SessionId=2dvkqvmuobkg4dq0m2m2l1bv; _LastLogin=11/21/2017 7:01:52 AM; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il8wZjVjNDNkMC1iZDY2LTQ0YjQtYTZhNS03M2IwOTAyNWJiMDMtREIwNkZBREUwOEI5RjA3MEYwMkIyNkU2NDBERkZFOEUiIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6MjFlNmVjYTMtYjk1Yy00NWY2LThlNWYtMjIzZmQxYTMyNDk4PC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFHc05udnlWbjl1UGZRQ0tsYi8xbXF0Vnp3ZTd5cWNwNjBKTzZLNDdZUkIxY2M2Y2QxVFV2TVVodzN2ZHUvNEc1SWh2MnJmVWxreURIRlY5MWJkV0FtUnZFZ1Qxa3hqdTFxcHNtTThUTEh0d2V6K1FiUmptWTZMRVc5ZTBQdTQzV09hVlZ3M3BmVndkQWk4SDZlcVVRMDZScFdqcktOMTZpSFl6empzWFpoc2FEVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUFVRUtwNE4vd0M3YzRDZytaYXFZcFBRSStyOWdRQk5UQTNCcGszUEJ2Yzh4ZXRrelJ6cUh6dCtlUm4rMTRVWlhFVDhGNGEwUG0wOVM4RDAwWURrRzRMaU82cFhIMm42Um1LaVR1bVNXT0NvOGVVQ2xiL1Q4SEQ4c3BkRkNzUWxRVDNySDZORTloZlQvS1dUT3plS1lWMmpvTzJ4NUhZcEd0L0prcHZiWWs4TEd3QkFBQTZOOFVMYVpjNHlONFFJN3lNSWhwSVRMOTVEZC9pcC9sTlNNL0pSQWYvSTRtd2pNL0ZqdDhGeWlPcnpGSlBWb3Y0Zi9jT0x5a1lhcE9VTDdQZit6WDgrTGdwWXo2VzFhajNXM0llbklRYjNjS2JaT3p2dTFtaHAyUVlEcDM4R0NCZEJvY2IrTWdtNDRBRHBEVWwyM1lOSTlJUTRGd3NqZW9xYUF4MGpJM1FDT3ZTeklXZk53TzFDZE9Gc2x1NEJsVHU2OGlsNkdLWVVmczRyblhFSEJEYkVKNE5USGk3WHRCK1NVa3RsNllFSldJTEtpNGo2M0F5Qlg2N0xvS05iNEFsamxaWlJNK3lWeUJvRml5Z2tyQmhYUllpaTR2dXNtRDN3RWRtRHJsTW1BbndDZUJWWlE1cVZDck1adFpUbVdvdHNpM3NXeS84M3ZuTzQ5ZDB5QkFBYlNzNDJ5RnkwR2ZRNzNkaGZwbzR0bnJFZ0pycWFwUEFLRFloTVFMMWpOWWxhMXVQRVl3WHN5SkJWR1VQWlRLWjNnUXEzQ1YwWjBmeWxOT2VTUmZmMS85UGUzdjlxaHliWnA0M0EyUnoxYXRXbVlJQURBTUVpVVNRaWFpWFNVNWdxZWhVa1ZZc0EzblBpQisyeENxVnpwb1IvSkVpeHhTTCtrVk5YR0MwcmhIZEZvcmZUelBLRks3OHY1MmxnV25va1hhNlpXVEZpcEtYNDZBSE5mb1g2Y0tOT29NZTNTWWNya0Q4L3pPRWs3dkhTQzZBTjFsNDNMcDlvZFptZmJQMXpOL2JpV2VYVVhQU3BETmZHa3VLV2pPWVpNMlQ5c1Nxc2NvSEY0cEx5VDBxQjBHYmMyRzdLL0xQYndMVHRP; FedAuth1=YzQ0dDU1YjJsNFEvaVhURjdmbmtsSDdCMHh1R2VtOVZpMG9JeXBYL1FIbVcyRlZ2bFJoUDlrY04vUWV6dVRpSTBIR0YwZ2E3UWNwcHM2a2ZNSWVKZDlsSVRrWDlWODM5U0tEcVRycHc0T1FWVWFZVmtMQlMyUW9WZXgraGZhMkcyTThwRTZVWlZZOFRudGFhQU8yeWhzZkUraGwyclJpTUZXd3ZucWJraVBDN0xlTEtmUGtRdHFYMXlzRFkxM0k3dGJvdzVnZHpWTVBQamxyMWFmZkVvZU9ZRWU3emJNdGwzVndsbEw1MSttRUdjK1F0TkplaU1ISmUyR2JMTzVlUWlGTnJGRHNuYW0xVVNsT2RRQnFpOXFwaUlmTk1MNm5BekFhMCtVVXNGaFBVQzdMT2VwTS9YVUtSbjVOOGkvTlI0dGJ4dmlmUUdySUo0N2x5WTY3TVhhV2tzZGxvYW5oL21ib2tRVXNaVFAxbWkyL1JkMGgzTU9uVzViZGZJakZDWk5aVGtoZmVCd3pIaElBWGpwblJOdUs1T1EzS3p4S3luSnhHMXlrbFFXdmxneWQvREFIYnlXbTF2ODdlSS9PSTRnK09QYWJIeEVzWnQzNzB5ZVdabXFsWjdnMUVmWFBUY1pURkFXOW15QjVLR3J0UEUwQVY0R2t3UjAyR2lXRjBacEdTUXZZSzdaRWo2bVZJeTJnVVkyUW16OEZPajNHWnVYRHEzWUx5SVNXb3YvUGRFTldPVUpsN2Z3VUltOWpJcS9Fd0lkOFh5WlJhYkJaMmdINUhMc05jQi9wSkthRHRKNEpFUlRWajhHM3JsZTlUYXQzbjJXb21WYkxXNW53elY1UXhvcHh1bFkwdlNTR3lVUUpWQzFPWE1hUEx3ck93WjREVUlDU2hvZ1BEQjNmSUh2M014SHVkZkhKeXBIQ08xVi9qVjIvSzhqVmFUYUNQa2VQcktMRHN1OGViZ29GVVJKUzN3RzNiZ2E4dWtFcVlVNUQzVnhuMmdHVDJYMFIzNDBTUHZkbTB3WnZIbDlyN09SZ1NrVWdQQUFVcDByUFVNOGpFRXdlQmFKREd3QW1OSFhPWWUxdnFCWkF3S2l2UUVUaGZCTVhwNVozTFljU2NsVHZCYnovejlvYytZTTFpUEFQeFMwY2Q5Q1FxZElKT0QxekRHcDhqVC9KcnVabFFFc1dTeEUzbCtPb3lUUXlBNjkyOWxuQlFmZHVnc01lakwyMVMvcjBtd0FyUFk8L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==' -H 'Connection: keep-alive' -H 'Referer: https://smartqc.gep.com/Sourcing/Rfx?dd=ZGM9OTU1MyZicGM9NDQzNTE10&oloc=216' -H 'dd: ZGM9OTU1MyZicGM9NDQzNTE10' --compressed"
+					},
+					"response": []
+				},
+				{
+					"name": "Register Session",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8083b354-a338-4688-a53f-2ec1c0bed6a7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "681ec8ba-8a0c-42d7-b0dc-1d28d0101477",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"const sessionId = pm.response.json();",
+									"pm.environment.set('netSessionId', sessionId);",
+									"pm.test('Session generated', function(){",
+									"    console.log('Session: ' + sessionId);",
+									"    pm.expect(sessionId.length).to.equal(24);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "UserExecutionContext",
+								"value": "{{userExecutionContext}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/SourcingService/SourcingIntegration/RegisterSession?oloc=219",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"SourcingService",
+								"SourcingIntegration",
+								"RegisterSession"
+							],
+							"query": [
+								{
+									"key": "oloc",
+									"value": "219",
+									"equals": true
+								}
+							]
+						},
+						"description": null
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29fd5f5c-7409-4a39-924d-2429887a993a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1405530d-09ca-423d-bc2c-c38405c51164",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get Event",
+			"description": null,
+			"item": [
+				{
+					"name": "Get Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37def54d-e8e3-4244-a10c-bf3440eda4a1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"const eventId = pm.response.json();",
+									"pm.environment.set('eventId', eventId);",
+									"pm.test('Fetched event id', function(){",
+									"    console.log('Event Id: ' + eventId);",
+									"    pm.expect(eventId.length).to.equal(24);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}"
+							},
+							{
+								"key": "RequestVerificationToken",
+								"value": "{{requestVerificationToken}}"
+							},
+							{
+								"key": "netSessionId",
+								"value": "{{netSessionId}}"
+							},
+							{
+								"key": "dd",
+								"value": "{{dd}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"documentCode\": {{documentCode}}\n}"
+						},
+						"url": {
+							"raw": "{{urlNode}}/psevent/action/doGetEventFromDocumentCode?oloc=220",
+							"host": [
+								"{{urlNode}}"
+							],
+							"path": [
+								"psevent",
+								"action",
+								"doGetEventFromDocumentCode"
+							],
+							"query": [
+								{
+									"key": "oloc",
+									"value": "220",
+									"equals": true
+								}
+							]
+						},
+						"description": "Generated from a curl request: \ncurl 'https://smartqc-sn.gep.com/data/psevent/action/doGetEventFromDocumentCode' -H 'RequestVerificationToken: AdbOco7IqIknLbXPMBlEE-tWS_v8MUE0-1O1ThfiZQsL63C6RD4JfbiEjSE5zQRF0A5AISzzU9tl8kHwrBfTGFFljME1:44JfN2YfgS2IeGu8VUO2Aha3ci1lBvHZMPHpVgZpXfLvnukdkFdqyxNH7rJDnBpTPMtLZu8oSgzHHxY9-1Ibt_LlGeaeNdqgxUkhBOgFD8HvU1cRhR8-yJvtzMf8KJ8zGWgzEw2' -H 'Origin: https://smartqc.gep.com' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'Cookie: ASP.NET_SessionId=c2quiowljxdlhmcfud0vwzif; _LastLogin=7/12/2017 3:12:36 PM; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U2VjdXJpdHlDb250ZXh0VG9rZW4gcDE6SWQ9Il84ODQ2ODYzOS00ZTcwLTQzOWYtOGU4ZS1kZGI1NzMwNWNlNjQtNDY5NURGQTcwNzU4NkU3RENEOTMxQkQyMUJEMEJEQTciIHhtbG5zOnAxPSJodHRwOi8vZG9jcy5vYXNpcy1vcGVuLm9yZy93c3MvMjAwNC8wMS9vYXNpcy0yMDA0MDEtd3NzLXdzc2VjdXJpdHktdXRpbGl0eS0xLjAueHNkIiB4bWxucz0iaHR0cDovL2RvY3Mub2FzaXMtb3Blbi5vcmcvd3Mtc3gvd3Mtc2VjdXJlY29udmVyc2F0aW9uLzIwMDUxMiI+PElkZW50aWZpZXI+dXJuOnV1aWQ6MjczMTZlMTItMjQxZS00MzMzLWE4Y2UtOTI1OWQzM2UxM2YzPC9JZGVudGlmaWVyPjxDb29raWUgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwNi8wNS9zZWN1cml0eSI+Z0FBQUFEdXNNNE9HWm8yZlZmVmJHTFIyaE1WMVN2ZFVwNXNDWTE2dnNIZ1FlbTVsMzd6NkRGV0dSZnVzdDNKSFJZekpwcDh6dkYzb1dhbllndDN4K3FObHk0blVGZnljVXhYU2RwL2lqMHJDTVBEMXQ5TE9NUWtiTjJ0bk0rU0RYeEZjdGVnQWNma0h1KzZBV09XaFg0Ny9NSjFlc0FWZmQzMkpiMlJEQzZ0NlU1TkVEVjZwMFpOOU0rWWMzVHRJY2RPczVTT01DT1IxcWtCeHEwamU3d1R5WlRLQUFBQUFMQ0hrWEthamFVN1pjSURsVFJHQlhkNzZMZm1Jc2FLKzdxZW1PSjBNTnJicWwvMTl0Y2lWTk9JKyszeFdEM1RJUDJzTE5SNVpVY2FQSlJ1cUFEOVBic2l0dlJsMm5OMVlJOGtyYWVGeG5VeVFtVzh2Slp2YWltMFlja25ETDBnM1FDVElzQ1hVTXU3NUtMU0Q1eWFxWmZPVWdBWE9kQTFwVktueXU4Tml4TlRBQkFBQXBoZHoyc3NjS005elBLV0lDb0srRW80NXIwbisvZElOZkdxK2g5L2NRcGdZMFhYWGM0YUZYY3ZzdXB5WElORVIyb1k1eUxhUXBXclRuZ3RXWGlpRTVJTWRxOWQvRVNTVHhBTDA3RFIzSjFBU1BCTk9Fc2hqeXkrWXFUWm5ubFBtdkdEK2x4bEZSTElMUDFoVFdiTUUyaXcxSk5oQ1hlQWdQR0plYXdFWXpPcDgwZk42K1JKbzB5cytRMFdlZTdRdGpYdWFYRHRnRlhMc1lQZkprNk83ZXhqYlhzODBJTTZWRW5UOUVsSHZqYm83Z24zcDNocENnaGtuOXdrMmNCY0NURkxxM1AzSmZzY2RWYVlSbXdnbnFxeU1WbDAyWGxlMXJkZEVIVktZbnJkZ1gyOCtSQzNjcTVaKzRMSmhzVjRCWE1MekhuOFBSMVFMSTUwK205TzVhMzNML0Z5ZXBrM1ZHbWt1SFc3d1JTQ3hKc1BRdzl1ZGhMRXJ1Qng2OHNjWXJCZXY1V0MzeHpGZjJQUXZkbHR6WDdQYkJSV2dTWEowMkN0MWtCLzdqaUlHN2grZ1NldS9jdkhTTEtUaXZQN041WS95UGNZQzRWMWNUeFRxTjBuNUE5aVk2bm82MjZITkNSQ2FkMjNlSDMwUENWNW1WNHlTVGVzSVRrd3QvemhjTk10T0JOMERiRGx5Ym0xV085Yk82RXVNWGtkK2lMZjBaRG0wS1NqbTRPWDl4MThCZVRmd0wwNDB3ajhoYjVhejlxZDlQTXJkTzN6WUdkTWhCVHl0cGtXWHJwQjJUMVpxbjFTdXhrRFIxZVIzQm0zcDg0N2czV2hscGtHR3M2akJ4Y2pqNWwwaElQWjBRdmlyaUJo; FedAuth1=endyMUlMczBYME9IaFo1b2ZidUEvMU5IRzhybStneVZrRjNGZTZncUF1N3VMVGFqOWdZcTh2RW83L3lMSnFvcjFBa0RETVpMODFjN24vdjVORjI1dmJEKzhJenBtb1NVYTVGc2FZT0dyRXlqZXBIL1VaK3NaMlhRVXcwRElNS1V0YjNGc3lHWSt2SklJWFlHQ3MvM2p1K0dyZitKcW9SRk5kT0hJRS9scFNLV2VCaDJyTXRyMEk0NDRqUVVURlJoYVR0aXNXelQzMGkvTXhwbDR4ZVYvRjdBMzhRS1ozd0J2STdhQUpmcEFwZmR2T2VWeEtzc1hXK094bnArR0toWng5MlFNbkNpaDBZaHRiODRaRFVSaW4zT3grTHQ2clVtNGVRcWZBQlFqa0ZJRXlRR3g2NkhvSDlxcHdYbnJRamI5QVBWMXVvOFRtZGxCNnp1TXltdU11VVhFbkNhRVlod0w2RWZXNU9HSWtOSlA5YkxadGlrblB1dERsYVhLbWtCcVFVSXkwQXBxSVlMcFpuY0dtc1BUWVVjZGFvQWFDMktlOUdEMUZ6Rm81NGJySmRDNEZ2dWFUTVpnWng5aUZnOVJVcUV6RnBqRFlXcUtVc3ZKN1FwY1h5YjVKcEN5KzBDMVdabm0wUXVOSUx3VFJtREFuQXJTQmN6bkhwakxtMkc3bFJESTlkbEdHUWdOb2ZqS25xY1A2K1BqM05OL0RhSS9NR2ZualBDMEdGUGcrTGowb2xwbGtndDlIeGw0c1lrRnhFZzVUSllnck1pVUdIWUlxZzNPSU1BbnBvM0JneG5PRmhoR1VNcldyNjc0UE9WWUR4V0VPSnNqL1NLb2Vnb3pMbjZGenFwa3Y4dEt5R1hWbWtFMENMY21aejJHNnJtdkVXZnJqRStha0hYc3EyemJSS1RzZWZ3YnY4SkFQZVYrK1RrdDNITURFcFhOUXhJaTZVTmJ4MUJUYkZVaDMxVUtkcWt3MldlTDFjeVI3Uk4yZVl2SDh6ZERLWmh4OGFpS1VONHB3ZllBUlRLbThKbHR2UmNobmFnZGZyV3Q1V0taRVBtc1c0L2UrUWg2Vk9udEN3RmFpejMwNCsvQ0NDaVRZUXZVQWlxeW13alVLK2lYK05OdTZ5V3hvZzZpa21LcGwzWFNiV1NUaGtRWEgrb1hGNUkzZEpVMWQ3K0VsNGRwMVl0amdpN3NSbnRnRWhBOUJDVjIxVXVGWDJFUURZb0dHSkRPdWN3U05KcjFQYjRpWExtQlFndDN2S0F0bVNOd1ZnPT08L0Nvb2tpZT48L1NlY3VyaXR5Q29udGV4dFRva2VuPg==; _ga=GA1.2.1916866057.1499331356; _gid=GA1.2.1629288382.1499665672; _gat=1; _LastLogin=11/21/2017 10:58:02 AM' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'netSessionId: x1x0f1kzw3y4bgw5pg0ihj22' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=216&dd=ZGM9OTcxOCZicGM9NDQzNTE10' -H 'dd: ZGM9OTcxOCZicGM9NDQzNTE10' --data-binary '{\\\"documentCode\\\":9718}' --compressed"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ddc4a1e-ea90-403f-a09f-5ad979bca969",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"// Get full event response",
+									"const result = pm.response.json();",
+									"",
+									"// Get Quoting Timeline",
+									"const quotingTimeLineId = result.quotingTimeLine.timelineId;",
+									"pm.environment.set(\"quotingTimeLineId\", quotingTimeLineId);",
+									"",
+									"// Get Scoring Timeline",
+									"const scoringTimeLineId = result.scoringTimeLine.timelineId;",
+									"pm.environment.set(\"scoringTimeLineId\", scoringTimeLineId);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "RequestVerificationToken",
+								"value": "{{requestVerificationToken}}"
+							},
+							{
+								"key": "netSessionId",
+								"value": "{{netSessionId}}"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}"
+							},
+							{
+								"key": "dd",
+								"value": "{{dd}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{urlNode}}/psevent/{{eventId}}?oloc=220",
+							"host": [
+								"{{urlNode}}"
+							],
+							"path": [
+								"psevent",
+								"{{eventId}}"
+							],
+							"query": [
+								{
+									"key": "oloc",
+									"value": "220",
+									"equals": true
+								}
+							]
+						},
+						"description": "Generated from a curl request: \ncurl 'https://smartqc-sn.gep.com/data/psevent/5a15390862bfe8166c5d4c75' -H 'Pragma: no-cache' -H 'RequestVerificationToken: 32LZSBOy1b1LyT86MOnCpWc6y5H4g9e0B539yEKpZaDoppRJIqgdxwmvXCO0lbN1QiC4P46x4c_OsYZt-FE_zy6FeUw1:yKX0cOR1mUvMZru4hYm6M8gK4ST4KZpielPmMrHbUoc0LmdUamhbdEIp0b7z3XZCVE-NSWvFrOzDIAJMYDfKq1ONGxumuInpUcxsn6hJuxXPkJz1eBGYNh2UNJ5fF5eF0H1nxw2' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'netSessionId: x1x0f1kzw3y4bgw5pg0ihj22' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=216&dd=ZGM9OTcxOCZicGM9NDQzNTE10' -H 'Cookie: _LastLogin=11/21/2017 10:58:02 AM' -H 'Connection: keep-alive' -H 'dd: ZGM9OTcxOCZicGM9NDQzNTE10' --compressed"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3aebc772-e7e9-41e2-a0a6-86edc52a55e4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff4f3141-1d62-471a-a60c-3a8c796cbafc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "67713fe5-7282-4c12-9591-887f3054e8b1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b0b2c241-6521-431d-b46d-4d233b2686d8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

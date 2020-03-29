@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "6e795ce3-da99-4acd-bac1-1d466d851719",
+		"name": "buyer-suppliers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Suppliers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "883db6a0-8ad4-4f52-a3ca-7ed81e5c9f2d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test('Supplier added to the Event', function(){",
+							"    pm.expect(result).to.equal(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"PartnerCode\":\"508296\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "{{url}}/SourcingService/Supplier/AddSuppliersToEvent?oloc=219",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SourcingService",
+						"Supplier",
+						"AddSuppliersToEvent"
+					],
+					"query": [
+						{
+							"key": "oloc",
+							"value": "219"
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/Supplier/AddSuppliersToEvent?c=NDQzNTE10&oloc=219' -H 'Pragma: no-cache' -H 'RequestVerificationToken: 6JgDdYedrUtOZc1Zsae2G2NMjM0Q7KU5A6wKfiFMqB2VeQp4YbJW8Tv-6kOpxpzmO4IceLeiiDkEM66vp9QthBgw-Dc1:cvJ3Ggjal3TK1QoRParKdgPXRTOBcnIQA5TYlnpOQC20gII1x9M9gewZ_zya6SMAmOVc_kUfhOCRNLqoAqBalNTZMsax3UmkvovH-EFC7eaGnNETm_gosqsgvjdTiIUPXb7Ttg2' -H 'x-correlation-id: 70b0d948-70c9-4a4d-9636-4ca9b474bfef' -H 'Origin: https://smartqc.gep.com' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"en-US\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":0}' -H 'Referer: https://smartqc.gep.com//Sourcing/Rfx?oloc=219&dd=ZGM9MjYwMzcmYnBjPTQ0MzUxNQ2' -H 'dd: ZGM9MjYwMzcmYnBjPTQ0MzUxNQ2' --data-binary '[{\\\"PartnerCode\\\":\\\"508296\\\"}]' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Supplier",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb6ad9b9-6c4e-4352-b0ae-235d3abd7621",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"const result = pm.response.json();",
+							"pm.test('Supplier added to the Event', function(){",
+							"    pm.expect(result).to.equal(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "RequestVerificationToken",
+						"value": "{{requestVerificationToken}}"
+					},
+					{
+						"key": "netSessionId",
+						"value": "{{netSessionId}}"
+					},
+					{
+						"key": "UserExecutionContext",
+						"value": "{{userExecutionContext}}"
+					},
+					{
+						"key": "dd",
+						"value": "{{dd}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"PartnerCode\":508296,\n\t\t\"PrimaryContact\":{\n\t\t\t\"ContactCode\":50829604000001\n\t\t}\n\t}\n]"
+				},
+				"url": {
+					"raw": "https://smartqc.gep.com/api/SourcingService/Supplier/DeleteSuppliers?c=NDQzNTE10&oloc=219",
+					"protocol": "https",
+					"host": [
+						"smartqc",
+						"gep",
+						"com"
+					],
+					"path": [
+						"api",
+						"SourcingService",
+						"Supplier",
+						"DeleteSuppliers"
+					],
+					"query": [
+						{
+							"key": "c",
+							"value": "NDQzNTE10"
+						},
+						{
+							"key": "oloc",
+							"value": "219"
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://smartqc.gep.com/api/SourcingService/Supplier/DeleteSuppliers?c=NDQzNTE10&oloc=219' -H 'Pragma: no-cache' -H 'RequestVerificationToken: ix0HK2_W6JoHNHTnA6yMvrS3bWexD8IJUE_M27YXoKTPgMCpw26lUEvZCtxzSfk9tuorYEQ5EuSYTfKkc5XalorwBQo1:4QGTan23jFXUMhHPw1T_3Xf_NCs5AE5p1ZK36e6iCzO3vEIDKboxld4-QT1CI6jl0qiF9VEdbtBmHmzmsDjLNVsnHZQ-3pMHHZD8ZvN1Shpdp4-N2KZ21Gq8N-IccoFODj4JNg2' -H 'x-correlation-id: 6a24e3f4-86f7-4c45-9d2f-d24b16b835ca' -H 'Origin: https://smartqc.gep.com' -H 'netSessionId: lnbijzaqnsmhxwqx2qq4gdmh' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'UserExecutionContext: {\\\"ClientName\\\":\\\"\\\",\\\"UserId\\\":379729,\\\"ContactCode\\\":44351504000094,\\\"LoggerCode\\\":\\\"EC101\\\",\\\"EntityId\\\":1,\\\"EntityType\\\":\\\"\\\",\\\"Product\\\":9,\\\"Culture\\\":\\\"ja-JP\\\",\\\"UserName\\\":\\\"\\\",\\\"Contexts\\\":[],\\\"CompanyName\\\":\\\"BuyerSqlConn\\\",\\\"ClientID\\\":443515,\\\"BuyerPartnerCode\\\":443515,\\\"IsAdmin\\\":false,\\\"IsSupplier\\\":false,\\\"IsSuperUser\\\":false,\\\"DefaultCurrencyCode\\\":\\\"USD\\\",\\\"BelongingEntityId\\\":0,\\\"BelongingEntityDetailCode\\\":0,\\\"ServingEntityId\\\":0,\\\"ServingEntityDetailCode\\\":0,\\\"ShipToLocationId\\\":-1}' -H 'Referer: https://smartqc.gep.com/?dd=ZGM9MjcxNTAmYnBjPTQ0MzUxNQ2&oloc=219' -H 'dd: ZGM9MjcxNTAmYnBjPTQ0MzUxNQ2' --data-binary '[{\\\"PartnerCode\\\":508296,\\\"PrimaryContact\\\":{\\\"ContactCode\\\":50829604000001}}]' --compressed"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ab547609-9b3e-4af8-9df8-a091d2e6b842",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "13ae731f-9579-4b62-891d-0789ab1bf150",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
