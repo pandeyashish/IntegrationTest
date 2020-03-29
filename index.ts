@@ -9,7 +9,7 @@ const fs = require("fs");
 const scenariosArr = [];
 const tagsArr = [];
 let environment = null;
-//Ashish
+
 const reports = {
   xmlURLs: [],
   htmlURLs: []
